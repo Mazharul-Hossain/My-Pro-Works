@@ -50,7 +50,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         DiscardButtonAddPane = new javax.swing.JButton();
         SearchPanel = new javax.swing.JPanel();
         BrowsePanelSubScrollPane1 = new javax.swing.JScrollPane();
-        BrowseDBTable1 = new javax.swing.JTable();
+        SearchDBTable = new javax.swing.JTable();
         SerialTxtFieldSearchPane = new javax.swing.JTextField();
         TitleTxtFieldSearchPane = new javax.swing.JTextField();
         AuthorTxtFieldSearchPane = new javax.swing.JTextField();
@@ -221,7 +221,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         MainTabbedPane.addTab("ADD Manual", ADDPanel);
 
-        BrowseDBTable1.setModel(new javax.swing.table.DefaultTableModel(
+        SearchDBTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -239,7 +239,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
                 "<html> <b>Number</b> </html>", "<html> <b>Manual Serial Number</b> </html>", "<html> <b>Title of Manual</b> </html>", "<html> <b>Author Name</b> </html>"
             }
         ));
-        BrowsePanelSubScrollPane1.setViewportView(BrowseDBTable1);
+        BrowsePanelSubScrollPane1.setViewportView(SearchDBTable);
 
         SerialTxtFieldSearchPane.setText("Enter the Manual Serial Number");
 
@@ -444,7 +444,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JTextField AuthorTxtFieldAddPane;
     private javax.swing.JTextField AuthorTxtFieldSearchPane;
     private javax.swing.JTable BrowseDBTable;
-    private javax.swing.JTable BrowseDBTable1;
     private javax.swing.JPanel BrowsePanel;
     private javax.swing.JScrollPane BrowsePanelMainScrollPane;
     private javax.swing.JScrollPane BrowsePanelSubScrollPane;
@@ -463,6 +462,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JButton PreviousButtonBrowsePane;
     private javax.swing.JButton SaveButtonAddPane;
     private javax.swing.JButton SearchButtonSearchPane;
+    private javax.swing.JTable SearchDBTable;
     private javax.swing.JPanel SearchPanel;
     private javax.swing.JMenuItem Search_Item_FileMenu;
     private javax.swing.JLabel SerialLabelAddPane;
