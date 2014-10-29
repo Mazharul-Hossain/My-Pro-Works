@@ -102,7 +102,7 @@ public class LibraryFunction {
             if (flag) {
                 query = query + ", '" + value + "'";
             } else {
-                query = query + ", '" + value + "'";
+                query = query + " '" + value + "'";
                 flag = true;
             }
         }
