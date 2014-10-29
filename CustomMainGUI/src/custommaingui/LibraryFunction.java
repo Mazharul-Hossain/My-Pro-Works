@@ -19,7 +19,7 @@ public class LibraryFunction {
 
     MySQLAccess dao;
 
-    String tableName = "comments";
+    String tableName = "books";
 
     public LibraryFunction() {
         dao = new MySQLAccess();
@@ -43,13 +43,25 @@ public class LibraryFunction {
 
     public String[][] Search(String[] keys, String[] values) {
         try {
+            ValidationEngine vEngine = new ValidationEngine();
+
             String query = "Select * from  `" + tableName + "` where ";
             Boolean flag = false;
+
             for (int i = 0; i < keys.length; i++) {
+
+                if (!vEngine.checkString(keys[i])) {
+                    break;
+                }
+
                 if (flag) {
                     query = query + " and " + keys[i] + " = '" + values[i] + "'";
                 } else {
-                    query = query + keys[i] + " = " + values[i];
+                    if (keys[i].equalsIgnoreCase("id")) {
+                        query = query + keys[i] + " = " + values[i];
+                    } else {
+                        query = query + keys[i] + " = '" + values[i] + "'";
+                    }
                     flag = true;
                 }
             }
@@ -81,7 +93,7 @@ public class LibraryFunction {
         flag = false;
         for (String value : values) {
             if (flag) {
-                query = query + ", " + value;
+                query = query + ", '" + value + "'";
             } else {
                 query = query + value;
                 flag = true;
@@ -108,12 +120,15 @@ public class LibraryFunction {
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-
-        for (int i = 1; i < resultData.length; i++) {
+        int i, j;
+        ValidationEngine vEngine = new ValidationEngine();
+        for (i = 1; i < resultData.length; i++) {
             Object[] object = new Object[resultData[i].length];
-            for (int j = 0; j < resultData[i].length; j++) {
+            for (j = 0; j < resultData[i].length; j++) {
                 object[j] = resultData[i][j];
-
+            }
+            if (!vEngine.checkString(resultData[i][j - 1])) {
+                break;
             }
             model.addRow(object);
         }

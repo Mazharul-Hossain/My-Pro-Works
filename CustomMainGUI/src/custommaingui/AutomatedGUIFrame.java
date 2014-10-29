@@ -12,7 +12,6 @@ import javax.swing.JTextField;
  *
  * @author farshad
  */
-
 public class AutomatedGUIFrame extends javax.swing.JFrame {
 
     /**
@@ -173,6 +172,11 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         DiscardButtonAddPane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/cancel.png"))); // NOI18N
         DiscardButtonAddPane.setText("<html>\n<b>Discard</b>\n</html>");
+        DiscardButtonAddPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiscardButtonAddPaneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ADDPanelLayout = new javax.swing.GroupLayout(ADDPanel);
         ADDPanel.setLayout(ADDPanelLayout);
@@ -387,7 +391,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
     private void UsrMan_HelpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsrMan_HelpMenuActionPerformed
         // TODO add your handling code here:
-    
+
         Main_ManualReader.PrintMan();
     }//GEN-LAST:event_UsrMan_HelpMenuActionPerformed
 
@@ -397,36 +401,109 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
     private void SearchButtonSearchPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonSearchPaneActionPerformed
         // TODO add your handling code here:       
-        
+
         // Text areas In add panel
-        //JOptionPane.showMessageDialog(null,SerialTxtFieldSearchPane.getText());
+        //JOptionPane.showMessageDialog(null,SerialTxtFieldSearchPane.getText());        
         String values0 = SerialTxtFieldSearchPane.getText();
         String values1 = TitleTxtFieldSearchPane.getText();
         String values2 = AuthorTxtFieldSearchPane.getText();
-        
-        String[] keys = {"id", "BookName", "Author"}; 
-        String[] values = {values0, values1, values2};
-        
-        LibraryFunction libraryFunction = new LibraryFunction();
-        String[][] resultData = libraryFunction.Search(keys, values);
-        libraryFunction.addRow(SearchDBTable, resultData);
+
+        String[] keys = new String[3];
+        String[] values = new String[3];
+
+        ValidationEngine vEngine = new ValidationEngine();
+        int checkFlag = 0;
+        if (vEngine.checkInt(values0, 1, 0)) {
+            values[checkFlag] = new String(values0);
+            keys[checkFlag] = new String("id");
+
+            checkFlag++;
+        }
+        if (vEngine.checkString(values1, 1, 1)) {
+            values[checkFlag] = new String(values1);
+            keys[checkFlag] = new String("BookName");
+
+            checkFlag++;
+        }
+        if (vEngine.checkString(values2, 1, 2)) {
+            values[checkFlag] = new String(values2);
+            keys[checkFlag] = new String("Author");
+
+            checkFlag++;
+        }
+        if (checkFlag > 0) {
+            System.out.println("checkFlag : " + checkFlag);
+
+            LibraryFunction libraryFunction = new LibraryFunction();
+            String[][] resultData = libraryFunction.Search(keys, values);
+            libraryFunction.addRow(SearchDBTable, resultData);
+            
+            discardData(1);
+        } else {
+            System.out.println("checkFlag : " + checkFlag);
+        }
     }//GEN-LAST:event_SearchButtonSearchPaneActionPerformed
 
     private void SaveButtonAddPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonAddPaneActionPerformed
         // TODO add your handling code here:
-        
+
         // Text areas In add panel
-        
         String values0 = SerialTxtFieldAddPane.getText();
         String values1 = ManualTxtFieldAddPane.getText();
         String values2 = AuthorTxtFieldAddPane.getText();
-        
-        String[] keys = {"id", "BookName", "Author"}; 
-        String[] values = {values0, values1, values2};
 
-        LibraryFunction libraryFunction = new LibraryFunction();
-        libraryFunction.Add(keys, values);
+        String[] keys = {"id", "BookName", "Author"};
+
+        ValidationEngine vEngine = new ValidationEngine();
+        int checkFlag = 0;
+        if (!vEngine.checkInt(values0, 0, 0)) {
+            values0 = "??????";
+            checkFlag++;
+        }
+        if (!vEngine.checkString(values1, 0, 1)) {
+            values1 = "??????";
+            checkFlag++;
+        }
+        if (!vEngine.checkString(values2, 0, 2)) {
+            values2 = "??????";
+            checkFlag++;
+        }
+        if (checkFlag < 3) {
+            System.out.println("Add checkFlag : " + checkFlag);
+            String[] values = {values0, values1, values2};
+
+            LibraryFunction libraryFunction = new LibraryFunction();
+            if (libraryFunction.Add(keys, values)) {
+                discardData(0);
+            }
+        } else {
+            System.out.println("Add checkFlag : " + checkFlag);
+        }
     }//GEN-LAST:event_SaveButtonAddPaneActionPerformed
+
+    private void DiscardButtonAddPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiscardButtonAddPaneActionPerformed
+        // TODO add your handling code here:
+        discardData(0);
+
+    }//GEN-LAST:event_DiscardButtonAddPaneActionPerformed
+
+    /**
+     * My Codes :D starts
+     */
+    private void discardData(int i) {
+        ValidationEngine vEngine = new ValidationEngine();
+        String[] message = vEngine.getMessage(i);
+        if (i == 0) {
+            SerialTxtFieldAddPane.setText(message[0]);
+            ManualTxtFieldAddPane.setText(message[1]);
+            AuthorTxtFieldAddPane.setText(message[2]);
+        } else if (i == 0) {
+            SerialTxtFieldSearchPane.setText(message[0]);
+            TitleTxtFieldSearchPane.setText(message[1]);
+            AuthorTxtFieldSearchPane.setText(message[2]);
+        }
+
+    }
 
     /**
      * @param args the command line arguments

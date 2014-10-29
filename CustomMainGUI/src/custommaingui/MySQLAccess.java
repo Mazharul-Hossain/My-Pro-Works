@@ -23,9 +23,9 @@ public class MySQLAccess {
      * DB information    
      */
     private final String dbServer = "localhost";
-    private final String dbName = "feedback";
+    private final String dbName = "ManBook";
     private final String dbUserID = "root";
-    private final String dbPass = "nopass";
+    private final String dbPass = "nopass123";
 
     private Connection connect = null;
     private Statement statement = null;
@@ -55,7 +55,7 @@ public class MySQLAccess {
         }
         return null;
     }
-    
+
     public int executeQueryUpdate(String query) {
         int resultSetLocal = 0;
         try {
@@ -67,21 +67,21 @@ public class MySQLAccess {
     }
 
     private String[] readMetaData(ResultSet resultSet) {
-        String[] columnName = new String[]{};
+        String[] columnName = new String[3];
         try {
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
-                columnName[i] = resultSet.getMetaData().getColumnName(i + 1);
+                columnName[i] = new String(resultSet.getMetaData().getColumnName(i + 1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(columnName.length);
+        System.out.println("readMetaData : " + columnName.length);
         return columnName;
     }
 
     public String[][] readResultData(ResultSet resultSet) {
         try {
-            String[][] columnName = new String[][]{};
+            String[][] columnName = new String[100][3];
             columnName[0] = readMetaData(resultSet);
             int index = 1;
             while (resultSet.next()) {
@@ -90,6 +90,7 @@ public class MySQLAccess {
                 }
                 index++;
             }
+            System.out.println("readResultData : " + columnName.length);
             return columnName;
         } catch (SQLException ex) {
             Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);

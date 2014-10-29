@@ -416,6 +416,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;Discard&lt;/b&gt;&#xa;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DiscardButtonAddPaneActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
