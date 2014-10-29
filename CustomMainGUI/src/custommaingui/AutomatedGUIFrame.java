@@ -83,6 +83,12 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 204, 255));
         setName("MainFrame"); // NOI18N
 
+        MainTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                MainTabbedPaneStateChanged(evt);
+            }
+        });
+
         BrowsePanel.setToolTipText("");
 
         BrowseDBTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -514,6 +520,14 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         String[][] resultData = libraryFunction.BrowseLast();
         libraryFunction.addRow(BrowseDBTable, resultData);
     }//GEN-LAST:event_LastButtonBrowsePaneActionPerformed
+
+    private void MainTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MainTabbedPaneStateChanged
+        //Tanu ADD YOUR CODE HERE////
+        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        */
+    }//GEN-LAST:event_MainTabbedPaneStateChanged
 
     /**
      * My Codes :D starts
