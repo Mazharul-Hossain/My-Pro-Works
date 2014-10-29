@@ -270,6 +270,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;First&lt;/b&gt;&#xa;&lt;/html&gt;&#xa;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstButtonBrowsePaneActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="PreviousButtonBrowsePane">
               <Properties>
@@ -278,6 +281,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;Previous&lt;b&gt;&#xa;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PreviousButtonBrowsePaneActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="LastButtonBrowsePane">
               <Properties>
@@ -286,6 +292,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;Last&lt;/b&gt;&#xa;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LastButtonBrowsePaneActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="NextButtonBrowsePane">
               <Properties>

@@ -22,10 +22,18 @@ public class LibraryFunction {
     String tableName = "books";
 
     int paginationIndex;
+    int limit;
 
     public LibraryFunction() {
         dao = new MySQLAccess();
         dao.connectDataBase();
+        limit = 10;
+    }
+
+    public LibraryFunction(int l) {
+        dao = new MySQLAccess();
+        dao.connectDataBase();
+        limit = l;
     }
 
     public String[][] Browse(int start, int limit) {
@@ -140,15 +148,14 @@ public class LibraryFunction {
     /**
      * Functions for paginations
      *
-     * @param limit
      * @return
      *
      */
-    public String[][] BrowseFirst(int limit) {
+    public String[][] BrowseFirst() {
         return Browse(0, limit);
     }
 
-    public String[][] BrowseLast(int limit) {
+    public String[][] BrowseLast() {
         String query = "Select COUNT(*) from  `" + tableName + "`";
 
         System.out.println(query);
@@ -161,7 +168,7 @@ public class LibraryFunction {
         return Browse(start, limit);
     }
 
-    public String[][] BrowseNext(int limit) {
+    public String[][] BrowseNext() {
         String query = "Select COUNT(*) from  `" + tableName + "`";
 
         System.out.println(query);
@@ -172,26 +179,17 @@ public class LibraryFunction {
         int totalMax = Integer.parseInt(resultData[1][0]);
 
         if (totalMax < (paginationIndex + limit)) {
-            return BrowseLast(limit);
+            return BrowseLast();
         } else {
             return Browse((paginationIndex + limit), limit);
         }
     }
 
-    public String[][] BrowsePrevious(int limit) {
+    public String[][] BrowsePrevious() {
         if (0 > (paginationIndex - limit)) {
-            return BrowseFirst(limit);
+            return BrowseFirst();
         } else {
             return Browse((paginationIndex - limit), limit);
         }
-    }
-
-    public static void main(String args[]) {
-        
-        LibraryFunction lf = new LibraryFunction();
-        lf.BrowseFirst(10);
-        lf.BrowseNext(10);
-        lf.BrowsePrevious(10);
-
     }
 }

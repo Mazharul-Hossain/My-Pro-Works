@@ -97,12 +97,27 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         FirstButtonBrowsePane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/up.png"))); // NOI18N
         FirstButtonBrowsePane.setText("<html>\n<b>First</b>\n</html>\n");
+        FirstButtonBrowsePane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstButtonBrowsePaneActionPerformed(evt);
+            }
+        });
 
         PreviousButtonBrowsePane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/back.png"))); // NOI18N
         PreviousButtonBrowsePane.setText("<html>\n<b>Previous<b>\n</html>");
+        PreviousButtonBrowsePane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreviousButtonBrowsePaneActionPerformed(evt);
+            }
+        });
 
         LastButtonBrowsePane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/down.png"))); // NOI18N
         LastButtonBrowsePane.setText("<html>\n<b>Last</b>\n</html>");
+        LastButtonBrowsePane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastButtonBrowsePaneActionPerformed(evt);
+            }
+        });
 
         NextButtonBrowsePane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/forward.png"))); // NOI18N
         NextButtonBrowsePane.setText("<html>\n<b>Next</b>\n</html>");
@@ -395,6 +410,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
     private void NextButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonBrowsePaneActionPerformed
         // TODO add your handling code here:
+        String[][] resultData = libraryFunction.BrowseNext();
+        libraryFunction.addRow(, resultData);
     }//GEN-LAST:event_NextButtonBrowsePaneActionPerformed
 
     private void SearchButtonSearchPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonSearchPaneActionPerformed
@@ -411,7 +428,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         ValidationEngine vEngine = new ValidationEngine();
         int checkFlag = 0;
-        if (vEngine.checkInt(values0, 1, 0)) {
+        if (vEngine.checkString(values0, 1, 0)) {
             values[checkFlag] = new String(values0);
             keys[checkFlag] = new String("id");
 
@@ -453,16 +470,16 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         ValidationEngine vEngine = new ValidationEngine();
         int checkFlag = 0;
-        if (!vEngine.checkInt(values0, 0, 0)) {
+        if (!vEngine.checkString(values0, 0, 0)) {
             values0 = "??????";
             checkFlag++;
         }
         if (!vEngine.checkString(values1, 0, 1)) {
-            values1 = "??????";
+            values1 = "Untitled";
             checkFlag++;
         }
         if (!vEngine.checkString(values2, 0, 2)) {
-            values2 = "??????";
+            values2 = "Unknown";
             checkFlag++;
         }
         if (checkFlag < 3) {
@@ -482,6 +499,21 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         discardData(0);
 
     }//GEN-LAST:event_DiscardButtonAddPaneActionPerformed
+
+    private void FirstButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstButtonBrowsePaneActionPerformed
+        // TODO add your handling code here:
+        String[][] resultData = libraryFunction.BrowseFirst();
+    }//GEN-LAST:event_FirstButtonBrowsePaneActionPerformed
+
+    private void PreviousButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousButtonBrowsePaneActionPerformed
+        // TODO add your handling code here:
+        String[][] resultData = libraryFunction.BrowsePrevious();
+    }//GEN-LAST:event_PreviousButtonBrowsePaneActionPerformed
+
+    private void LastButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonBrowsePaneActionPerformed
+        // TODO add your handling code here:
+        String[][] resultData = libraryFunction.BrowseLast();
+    }//GEN-LAST:event_LastButtonBrowsePaneActionPerformed
 
     /**
      * My Codes :D starts
