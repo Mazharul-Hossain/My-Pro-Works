@@ -18,6 +18,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
      * Creates new form AutomatedGUIFrame
      */
     public AutomatedGUIFrame() {
+        libraryFunction = new LibraryFunction();
         initComponents();
     }
 
@@ -407,7 +408,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private void NextButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonBrowsePaneActionPerformed
         // TODO add your handling code here:
         String[][] resultData = libraryFunction.BrowseNext();
-        libraryFunction.addRow(, resultData);
+        libraryFunction.addRow(BrowseDBTable, resultData);
     }//GEN-LAST:event_NextButtonBrowsePaneActionPerformed
 
     private void SearchButtonSearchPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonSearchPaneActionPerformed
@@ -445,10 +446,9 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         if (checkFlag > 0) {
             System.out.println("checkFlag : " + checkFlag);
 
-            LibraryFunction libraryFunction = new LibraryFunction();
             String[][] resultData = libraryFunction.Search(keys, values);
             libraryFunction.addRow(SearchDBTable, resultData);
-            
+
             discardData(1);
         } else {
             System.out.println("checkFlag : " + checkFlag);
@@ -483,7 +483,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
             System.out.println("Add checkFlag : " + checkFlag);
             String[] values = {values0, values1, values2};
 
-            LibraryFunction libraryFunction = new LibraryFunction();
             if (libraryFunction.Add(keys, values)) {
                 discardData(0);
             }
@@ -501,16 +500,19 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private void FirstButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstButtonBrowsePaneActionPerformed
         // TODO add your handling code here:
         String[][] resultData = libraryFunction.BrowseFirst();
+        libraryFunction.addRow(BrowseDBTable, resultData);
     }//GEN-LAST:event_FirstButtonBrowsePaneActionPerformed
 
     private void PreviousButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousButtonBrowsePaneActionPerformed
         // TODO add your handling code here:
         String[][] resultData = libraryFunction.BrowsePrevious();
+        libraryFunction.addRow(BrowseDBTable, resultData);
     }//GEN-LAST:event_PreviousButtonBrowsePaneActionPerformed
 
     private void LastButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonBrowsePaneActionPerformed
         // TODO add your handling code here:
         String[][] resultData = libraryFunction.BrowseLast();
+        libraryFunction.addRow(BrowseDBTable, resultData);
     }//GEN-LAST:event_LastButtonBrowsePaneActionPerformed
 
     /**
@@ -602,4 +604,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private LibraryFunction libraryFunction;
 }

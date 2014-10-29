@@ -68,11 +68,7 @@ public class LibraryFunction {
                 if (flag) {
                     query = query + " and " + keys[i] + " = '" + values[i] + "'";
                 } else {
-                    if (keys[i].equalsIgnoreCase("id")) {
-                        query = query + keys[i] + " = " + values[i];
-                    } else {
                         query = query + keys[i] + " = '" + values[i] + "'";
-                    }
                     flag = true;
                 }
             }
@@ -106,7 +102,7 @@ public class LibraryFunction {
             if (flag) {
                 query = query + ", '" + value + "'";
             } else {
-                query = query + value;
+                query = query + ", '" + value + "'";
                 flag = true;
             }
         }
