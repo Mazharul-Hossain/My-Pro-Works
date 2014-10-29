@@ -21,12 +21,15 @@ public class LibraryFunction {
 
     String tableName = "books";
 
+    int paginationIndex;
+
     public LibraryFunction() {
         dao = new MySQLAccess();
         dao.connectDataBase();
     }
 
     public String[][] Browse(int start, int limit) {
+        paginationIndex = start;
         try {
             String query = "Select * from `" + tableName + "`";
             query = query + " LIMIT " + start + ", " + limit;
@@ -132,5 +135,63 @@ public class LibraryFunction {
             }
             model.addRow(object);
         }
+    }
+
+    /**
+     * Functions for paginations
+     *
+     * @param limit
+     * @return
+     *
+     */
+    public String[][] BrowseFirst(int limit) {
+        return Browse(0, limit);
+    }
+
+    public String[][] BrowseLast(int limit) {
+        String query = "Select COUNT(*) from  `" + tableName + "`";
+
+        System.out.println(query);
+
+        ResultSet resultSet = dao.executeQuery(query);
+        String[][] resultData = dao.readResultData(resultSet);
+
+        int start = (Integer.parseInt(resultData[1][0]) / limit) * limit;
+        System.out.println("start : " + start);
+        return Browse(start, limit);
+    }
+
+    public String[][] BrowseNext(int limit) {
+        String query = "Select COUNT(*) from  `" + tableName + "`";
+
+        System.out.println(query);
+
+        ResultSet resultSet = dao.executeQuery(query);
+        String[][] resultData = dao.readResultData(resultSet);
+
+        int totalMax = Integer.parseInt(resultData[1][0]);
+
+        if (totalMax < (paginationIndex + limit)) {
+            return BrowseLast(limit);
+        } else {
+            return Browse((paginationIndex + limit), limit);
+        }
+    }
+
+    public String[][] BrowsePrevious(int limit) {
+        if (0 > (paginationIndex - limit)) {
+            return BrowseFirst(limit);
+        } else {
+            return Browse((paginationIndex - limit), limit);
+        }
+    }
+
+    public static void main(String args[]) {
+        
+        LibraryFunction lf = new LibraryFunction();
+        lf.BrowseFirst(10);
+        lf.BrowseNext(10);
+        lf.BrowsePrevious(10);
+
     }
 }

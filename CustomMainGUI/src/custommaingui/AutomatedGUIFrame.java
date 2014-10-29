@@ -18,6 +18,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
      * Creates new form AutomatedGUIFrame
      */
     public AutomatedGUIFrame() {
+	libraryFunction = new LibraryFunction();
         initComponents();
     }
 
@@ -430,8 +431,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         }
         if (checkFlag > 0) {
             System.out.println("checkFlag : " + checkFlag);
-
-            LibraryFunction libraryFunction = new LibraryFunction();
+            
             String[][] resultData = libraryFunction.Search(keys, values);
             libraryFunction.addRow(SearchDBTable, resultData);
             
@@ -468,8 +468,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         if (checkFlag < 3) {
             System.out.println("Add checkFlag : " + checkFlag);
             String[] values = {values0, values1, values2};
-
-            LibraryFunction libraryFunction = new LibraryFunction();
+            
             if (libraryFunction.Add(keys, values)) {
                 discardData(0);
             }
@@ -573,4 +572,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private LibraryFunction libraryFunction;
 }
