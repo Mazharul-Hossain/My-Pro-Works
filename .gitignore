@@ -53,3 +53,5 @@ Temporary Items
 *.class
 *.class
 *.class
+*.class
+CustomMainGUI/build/classes/custommaingui/AutomatedGUIFrame$1.class

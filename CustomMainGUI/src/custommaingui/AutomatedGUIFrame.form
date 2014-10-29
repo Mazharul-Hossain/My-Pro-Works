@@ -228,7 +228,7 @@
                     <Component class="javax.swing.JTable" name="BrowseDBTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="11">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="true" title="&lt;html&gt; &lt;b&gt;Number&lt;/b&gt; &lt;/html&gt;" type="java.lang.Object"/>
                             <Column editable="true" title="&lt;html&gt; &lt;b&gt;Manual Serial Number&lt;/b&gt; &lt;/html&gt;" type="java.lang.Object"/>
                             <Column editable="true" title="&lt;html&gt; &lt;b&gt;Title of Manual&lt;/b&gt; &lt;/html&gt;" type="java.lang.Object"/>
@@ -405,6 +405,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;Save&lt;/b&gt;&#xa;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveButtonAddPaneActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="DiscardButtonAddPane">
               <Properties>
@@ -474,7 +477,7 @@
                 <Component class="javax.swing.JTable" name="SearchDBTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="11">
+                      <Table columnCount="4" rowCount="0">
                         <Column editable="true" title="&lt;html&gt; &lt;b&gt;Number&lt;/b&gt; &lt;/html&gt;" type="java.lang.Object"/>
                         <Column editable="true" title="&lt;html&gt; &lt;b&gt;Manual Serial Number&lt;/b&gt; &lt;/html&gt;" type="java.lang.Object"/>
                         <Column editable="true" title="&lt;html&gt; &lt;b&gt;Title of Manual&lt;/b&gt; &lt;/html&gt;" type="java.lang.Object"/>
@@ -534,6 +537,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;Search&lt;/b&gt;&#xa;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchButtonSearchPaneActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
