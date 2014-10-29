@@ -27,22 +27,21 @@ public class LibraryFunction {
     }
 
     public String[][] Browse(int start, int limit) {
-        String[][] resultData = null;
         try {
             String query = "Select * from `" + tableName + "`";
-            query = query + " LIMIT " + start+ ", " + limit;
+            query = query + " LIMIT " + start + ", " + limit;
             System.out.println(query);
 
             ResultSet resultSet = dao.executeQuery(query);
-            resultData = dao.readResultData(resultSet);
+            String[][] resultData = dao.readResultData(resultSet);
+            return resultData;
         } catch (Exception ex) {
             Logger.getLogger(LibraryFunction.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return resultData;
+        return null;
     }
 
     public String[][] Search(String[] keys, String[] values) {
-        String[][] resultData = null;
         try {
             String query = "Select * from  `" + tableName + "` where ";
             Boolean flag = false;
@@ -57,11 +56,12 @@ public class LibraryFunction {
             System.out.println(query);
 
             ResultSet resultSet = dao.executeQuery(query);
-            resultData = dao.readResultData(resultSet);
+            String[][] resultData = dao.readResultData(resultSet);
+            return resultData;
         } catch (Exception ex) {
             Logger.getLogger(LibraryFunction.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return resultData;
+        return null;
     }
 
     public Boolean Add(String[] keys, String[] values) {
@@ -69,7 +69,7 @@ public class LibraryFunction {
         Boolean flag = false;
 
         String query = "Insert into " + tableName + "  ( ";
-        for (String key : keys) {            
+        for (String key : keys) {
             if (flag) {
                 query = query + ", " + key;
             } else {
@@ -102,10 +102,18 @@ public class LibraryFunction {
     public void addRow(JTable jtable, String[][] resultData) {
 
         DefaultTableModel model = (DefaultTableModel) jtable.getModel();
+
+        int rowCount = model.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+
         for (int i = 1; i < resultData.length; i++) {
             Object[] object = new Object[resultData[i].length];
             for (int j = 0; j < resultData[i].length; j++) {
                 object[j] = resultData[i][j];
+
             }
             model.addRow(object);
         }

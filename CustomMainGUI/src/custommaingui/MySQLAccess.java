@@ -66,22 +66,23 @@ public class MySQLAccess {
         return resultSetLocal;
     }
 
-    private String[][] readMetaData(ResultSet resultSet) {
-        String[][] columnName = new String[100][100];
+    private String[] readMetaData(ResultSet resultSet) {
+        String[] columnName = new String[]{};
         try {
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
-                columnName[0][i] = resultSet.getMetaData().getColumnName(i + 1);
+                columnName[i] = resultSet.getMetaData().getColumnName(i + 1);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(columnName.length);
         return columnName;
     }
 
     public String[][] readResultData(ResultSet resultSet) {
-        String[][] columnName = new String[][]{};
         try {
-            columnName = readMetaData(resultSet);
+            String[][] columnName = new String[][]{};
+            columnName[0] = readMetaData(resultSet);
             int index = 1;
             while (resultSet.next()) {
                 for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
@@ -89,10 +90,11 @@ public class MySQLAccess {
                 }
                 index++;
             }
+            return columnName;
         } catch (SQLException ex) {
             Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return columnName;
+        return null;
     }
 
     // you need to close all three to make sure
@@ -102,16 +104,6 @@ public class MySQLAccess {
     }
 
     private void close(Statement c) {
-        try {
-            if (c != null) {
-                c.close();
-            }
-        } catch (Exception e) {
-            // don't throw now as it might leave following closables in undefined state
-        }
-    }
-
-    private void close(ResultSet c) {
         try {
             if (c != null) {
                 c.close();
