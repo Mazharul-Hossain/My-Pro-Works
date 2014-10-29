@@ -5,6 +5,8 @@
  */
 package custommaingui;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author farshad
@@ -85,17 +87,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         BrowseDBTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "<html> <b>Number</b> </html>", "<html> <b>Manual Serial Number</b> </html>", "<html> <b>Title of Manual</b> </html>", "<html> <b>Author Name</b> </html>"
@@ -172,6 +164,11 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         SaveButtonAddPane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/import.png"))); // NOI18N
         SaveButtonAddPane.setText("<html>\n<b>Save</b>\n</html>");
+        SaveButtonAddPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonAddPaneActionPerformed(evt);
+            }
+        });
 
         DiscardButtonAddPane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/cancel.png"))); // NOI18N
         DiscardButtonAddPane.setText("<html>\n<b>Discard</b>\n</html>");
@@ -223,17 +220,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         SearchDBTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "<html> <b>Number</b> </html>", "<html> <b>Manual Serial Number</b> </html>", "<html> <b>Title of Manual</b> </html>", "<html> <b>Author Name</b> </html>"
@@ -249,6 +236,11 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         SearchButtonSearchPane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/search.png"))); // NOI18N
         SearchButtonSearchPane.setText("<html>\n<b>Search</b>\n</html>");
+        SearchButtonSearchPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonSearchPaneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SearchPanelLayout = new javax.swing.GroupLayout(SearchPanel);
         SearchPanel.setLayout(SearchPanelLayout);
@@ -401,6 +393,50 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private void NextButtonBrowsePaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonBrowsePaneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NextButtonBrowsePaneActionPerformed
+
+    private void SearchButtonSearchPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonSearchPaneActionPerformed
+        // TODO add your handling code here:
+        
+        // Text areas In add panel
+        JTextField []SearchPaanetextFields = null;
+        SearchPaanetextFields[0] = SerialTxtFieldSearchPane;
+        SearchPaanetextFields[1] = TitleTxtFieldSearchPane;
+        SearchPaanetextFields[2] = AuthorTxtFieldSearchPane;
+        
+        String[] keys = {"", "", ""}; 
+        String[] values = null;
+        
+        int i = 0;
+        for (JTextField textField : SearchPaanetextFields) {
+            values[i] = textField.getText();
+            i++;
+        }
+        
+        LibraryFunction libraryFunction = new LibraryFunction();
+        String[][] resultData = libraryFunction.Search(keys, values);
+        libraryFunction.addRow(SearchDBTable, resultData);
+    }//GEN-LAST:event_SearchButtonSearchPaneActionPerformed
+
+    private void SaveButtonAddPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonAddPaneActionPerformed
+        // TODO add your handling code here:
+        
+        // Text areas In add panel
+        JTextField []AddPaanetextFields = null;
+        AddPaanetextFields[0] = SerialTxtFieldAddPane;
+        AddPaanetextFields[1] = ManualTxtFieldAddPane;
+        AddPaanetextFields[2] = AuthorTxtFieldAddPane;
+        
+        String[] keys = {"", "", ""}; 
+        String[] values = null;
+        
+        int i = 0;
+        for (JTextField textField : AddPaanetextFields) {
+            values[i] = textField.getText();
+            i++;
+        }
+        LibraryFunction libraryFunction = new LibraryFunction();
+        libraryFunction.Add(keys, values);
+    }//GEN-LAST:event_SaveButtonAddPaneActionPerformed
 
     /**
      * @param args the command line arguments

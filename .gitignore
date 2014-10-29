@@ -41,3 +41,15 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.xml
+*.netbeans_automatic_build
+*.netbeans_update_resources
+*.class
+*.properties
+*.mf
+*.properties
+*.class
+*.class
+*.class
+*.class
