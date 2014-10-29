@@ -34,9 +34,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         MainTabbedPane = new javax.swing.JTabbedPane();
         BrowsePanel = new javax.swing.JPanel();
-        BrowsePanelMainScrollPane = new javax.swing.JScrollPane();
-        BrowsePanelSubScrollPane = new javax.swing.JScrollPane();
-        BrowseDBTable = new javax.swing.JTable();
+        BrowsePanelSubScrollPane2 = new javax.swing.JScrollPane();
+        SearchDBTable1 = new javax.swing.JTable();
         FirstButtonBrowsePane = new javax.swing.JButton();
         PreviousButtonBrowsePane = new javax.swing.JButton();
         LastButtonBrowsePane = new javax.swing.JButton();
@@ -85,7 +84,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         BrowsePanel.setToolTipText("");
 
-        BrowseDBTable.setModel(new javax.swing.table.DefaultTableModel(
+        SearchDBTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -93,9 +92,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
                 "<html> <b>Number</b> </html>", "<html> <b>Manual Serial Number</b> </html>", "<html> <b>Title of Manual</b> </html>", "<html> <b>Author Name</b> </html>"
             }
         ));
-        BrowsePanelSubScrollPane.setViewportView(BrowseDBTable);
-
-        BrowsePanelMainScrollPane.setViewportView(BrowsePanelSubScrollPane);
+        BrowsePanelSubScrollPane2.setViewportView(SearchDBTable1);
 
         FirstButtonBrowsePane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/up.png"))); // NOI18N
         FirstButtonBrowsePane.setText("<html>\n<b>First</b>\n</html>\n");
@@ -119,27 +116,27 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         BrowsePanelLayout.setHorizontalGroup(
             BrowsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BrowsePanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(BrowsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BrowsePanelMainScrollPane)
                     .addGroup(BrowsePanelLayout.createSequentialGroup()
-                        .addGap(95, 95, 95)
+                        .addGap(107, 107, 107)
                         .addComponent(FirstButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(PreviousButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(NextButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(LastButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(LastButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(BrowsePanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(BrowsePanelSubScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         BrowsePanelLayout.setVerticalGroup(
             BrowsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BrowsePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BrowsePanelMainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
+                .addComponent(BrowsePanelSubScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(BrowsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FirstButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PreviousButtonBrowsePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -546,11 +543,9 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AuthorLabelAddPane;
     private javax.swing.JTextField AuthorTxtFieldAddPane;
     private javax.swing.JTextField AuthorTxtFieldSearchPane;
-    private javax.swing.JTable BrowseDBTable;
     private javax.swing.JPanel BrowsePanel;
-    private javax.swing.JScrollPane BrowsePanelMainScrollPane;
-    private javax.swing.JScrollPane BrowsePanelSubScrollPane;
     private javax.swing.JScrollPane BrowsePanelSubScrollPane1;
+    private javax.swing.JScrollPane BrowsePanelSubScrollPane2;
     private javax.swing.JMenuItem Browse_Item_FileMenu;
     private javax.swing.JButton DiscardButtonAddPane;
     private javax.swing.JMenuItem Exit_Item_FileMenu;
@@ -566,6 +561,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JButton SaveButtonAddPane;
     private javax.swing.JButton SearchButtonSearchPane;
     private javax.swing.JTable SearchDBTable;
+    private javax.swing.JTable SearchDBTable1;
     private javax.swing.JPanel SearchPanel;
     private javax.swing.JMenuItem Search_Item_FileMenu;
     private javax.swing.JLabel SerialLabelAddPane;
