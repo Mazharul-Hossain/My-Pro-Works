@@ -286,10 +286,9 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
             }
         });
 
-        Add_Item_FileMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
         Add_Item_FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/add.png"))); // NOI18N
         Add_Item_FileMenu.setMnemonic('V');
-        Add_Item_FileMenu.setText("<html>\n<b>ADD Manual</b>\n</html>");
+        Add_Item_FileMenu.setText("<html> <b>ADD Manual</b> </html>");
         Add_Item_FileMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Add_Item_FileMenuActionPerformed(evt);
@@ -297,10 +296,9 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         });
         FileMenu.add(Add_Item_FileMenu);
 
-        Search_Item_FileMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
         Search_Item_FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/search.png"))); // NOI18N
         Search_Item_FileMenu.setMnemonic('V');
-        Search_Item_FileMenu.setText("<html>\n<b>Search DB</b>\n</html>");
+        Search_Item_FileMenu.setText("<html> <b>Search DB</b> </html>");
         Search_Item_FileMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Search_Item_FileMenuActionPerformed(evt);
@@ -308,7 +306,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         });
         FileMenu.add(Search_Item_FileMenu);
 
-        Browse_Item_FileMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, 0));
         Browse_Item_FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/browse.png"))); // NOI18N
         Browse_Item_FileMenu.setText("<html>\n<b>Browse DB</b>\n</html>");
         Browse_Item_FileMenu.addActionListener(new java.awt.event.ActionListener() {
