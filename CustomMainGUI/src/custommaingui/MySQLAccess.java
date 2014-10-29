@@ -47,13 +47,13 @@ public class MySQLAccess {
     }
 
     public ResultSet executeQuery(String query) {
-        ResultSet resultSetLocal = null;
         try {
-            resultSetLocal = statement.executeQuery(query);
+            ResultSet resultSetLocal = statement.executeQuery(query);
+            return resultSetLocal;
         } catch (SQLException ex) {
             Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return resultSetLocal;
+        return null;
     }
     
     public int executeQueryUpdate(String query) {
@@ -67,7 +67,7 @@ public class MySQLAccess {
     }
 
     private String[][] readMetaData(ResultSet resultSet) {
-        String[][] columnName = null;
+        String[][] columnName = new String[100][100];
         try {
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
                 columnName[0][i] = resultSet.getMetaData().getColumnName(i + 1);
@@ -79,7 +79,7 @@ public class MySQLAccess {
     }
 
     public String[][] readResultData(ResultSet resultSet) {
-        String[][] columnName = null;
+        String[][] columnName = new String[][]{};
         try {
             columnName = readMetaData(resultSet);
             int index = 1;

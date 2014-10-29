@@ -5,6 +5,7 @@
  */
 package custommaingui;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -395,22 +396,16 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NextButtonBrowsePaneActionPerformed
 
     private void SearchButtonSearchPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonSearchPaneActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:       
         
         // Text areas In add panel
-        JTextField []SearchPaanetextFields = null;
-        SearchPaanetextFields[0] = SerialTxtFieldSearchPane;
-        SearchPaanetextFields[1] = TitleTxtFieldSearchPane;
-        SearchPaanetextFields[2] = AuthorTxtFieldSearchPane;
+        //JOptionPane.showMessageDialog(null,SerialTxtFieldSearchPane.getText());
+        String values0 = SerialTxtFieldSearchPane.getText();
+        String values1 = TitleTxtFieldSearchPane.getText();
+        String values2 = AuthorTxtFieldSearchPane.getText();
         
-        String[] keys = {"", "", ""}; 
-        String[] values = null;
-        
-        int i = 0;
-        for (JTextField textField : SearchPaanetextFields) {
-            values[i] = textField.getText();
-            i++;
-        }
+        String[] keys = {"id", "BookName", "Author"}; 
+        String[] values = {values0, values1, values2};
         
         LibraryFunction libraryFunction = new LibraryFunction();
         String[][] resultData = libraryFunction.Search(keys, values);
@@ -421,19 +416,14 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         // Text areas In add panel
-        JTextField []AddPaanetextFields = null;
-        AddPaanetextFields[0] = SerialTxtFieldAddPane;
-        AddPaanetextFields[1] = ManualTxtFieldAddPane;
-        AddPaanetextFields[2] = AuthorTxtFieldAddPane;
         
-        String[] keys = {"", "", ""}; 
-        String[] values = null;
+        String values0 = SerialTxtFieldAddPane.getText();
+        String values1 = ManualTxtFieldAddPane.getText();
+        String values2 = AuthorTxtFieldAddPane.getText();
         
-        int i = 0;
-        for (JTextField textField : AddPaanetextFields) {
-            values[i] = textField.getText();
-            i++;
-        }
+        String[] keys = {"id", "BookName", "Author"}; 
+        String[] values = {values0, values1, values2};
+
         LibraryFunction libraryFunction = new LibraryFunction();
         libraryFunction.Add(keys, values);
     }//GEN-LAST:event_SaveButtonAddPaneActionPerformed

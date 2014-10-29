@@ -29,8 +29,8 @@ public class LibraryFunction {
     public String[][] Browse(int start, int limit) {
         String[][] resultData = null;
         try {
-            String query = "Select * from " + tableName;
-            query = query + " LIMIT " + start + ", " + limit;
+            String query = "Select * from `" + tableName + "`";
+            query = query + " LIMIT " + start+ ", " + limit;
             System.out.println(query);
 
             ResultSet resultSet = dao.executeQuery(query);
@@ -44,11 +44,11 @@ public class LibraryFunction {
     public String[][] Search(String[] keys, String[] values) {
         String[][] resultData = null;
         try {
-            String query = "Select * from  " + tableName + " where ";
+            String query = "Select * from  `" + tableName + "` where ";
             Boolean flag = false;
             for (int i = 0; i < keys.length; i++) {
                 if (flag) {
-                    query = query + " and " + keys[i] + " = " + values[i];
+                    query = query + " and " + keys[i] + " = '" + values[i] + "'";
                 } else {
                     query = query + keys[i] + " = " + values[i];
                     flag = true;
@@ -69,7 +69,7 @@ public class LibraryFunction {
         Boolean flag = false;
 
         String query = "Insert into " + tableName + "  ( ";
-        for (String key : keys) {
+        for (String key : keys) {            
             if (flag) {
                 query = query + ", " + key;
             } else {
