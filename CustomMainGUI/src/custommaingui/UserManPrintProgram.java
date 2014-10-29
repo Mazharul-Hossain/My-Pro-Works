@@ -100,9 +100,9 @@ public class UserManPrintProgram extends JFrame {
         //Print the output
         printLog();
         //close the window when x button is clicked
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //set frame size
-        setSize(800, 600);
+        setSize(1200, 600);
         setLocationRelativeTo(null);    // centers on screen
         setVisible(true);
     }

@@ -66,9 +66,9 @@ public class LibraryFunction {
                 }
 
                 if (flag) {
-                    query = query + " and " + keys[i] + " = '" + values[i] + "'";
+                    query = query + " or " + keys[i] + " Like '%" + values[i] + "%'";
                 } else {
-                        query = query + keys[i] + " = '" + values[i] + "'";
+                    query = query + keys[i] + " Like '%" + values[i] + "%'";
                     flag = true;
                 }
             }
@@ -139,6 +139,7 @@ public class LibraryFunction {
             }
             model.addRow(object);
         }
+        System.out.println("addRow : " + model.getRowCount());
     }
 
     /**

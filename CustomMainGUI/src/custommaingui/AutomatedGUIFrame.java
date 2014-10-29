@@ -522,11 +522,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LastButtonBrowsePaneActionPerformed
 
     private void MainTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MainTabbedPaneStateChanged
-        //Tanu ADD YOUR CODE HERE////
-        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        */
+        String[][] resultData = libraryFunction.BrowseFirst();
+        libraryFunction.addRow(BrowseDBTable, resultData);
     }//GEN-LAST:event_MainTabbedPaneStateChanged
 
     /**
