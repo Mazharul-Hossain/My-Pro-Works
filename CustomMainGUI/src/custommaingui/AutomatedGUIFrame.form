@@ -35,14 +35,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Add_Item_FileMenu">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="A"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/custommaingui/add.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="86"/>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;ADD Manual&lt;/b&gt;&#xa;&lt;/html&gt;"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;b&gt;ADD Manual&lt;/b&gt; &lt;/html&gt;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Add_Item_FileMenuActionPerformed"/>
@@ -50,14 +47,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Search_Item_FileMenu">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="S"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/custommaingui/search.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="86"/>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;Search DB&lt;/b&gt;&#xa;&lt;/html&gt;"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;b&gt;Search DB&lt;/b&gt; &lt;/html&gt;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Search_Item_FileMenuActionPerformed"/>
@@ -65,9 +59,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Browse_Item_FileMenu">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="D"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/custommaingui/browse.png"/>
                 </Property>
@@ -222,7 +213,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="SearchDBTable1">
+                <Component class="javax.swing.JTable" name="BrowseDBTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="0">
@@ -441,7 +432,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BrowsePanelSubScrollPane1" min="-2" pref="554" max="-2" attributes="0"/>
+                          <Component id="SearchPanelSubScrollPane" min="-2" pref="554" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="SerialTxtFieldSearchPane" min="-2" pref="151" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -467,14 +458,14 @@
                           <Component id="SearchButtonSearchPane" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="37" max="32767" attributes="0"/>
-                      <Component id="BrowsePanelSubScrollPane1" min="-2" pref="248" max="-2" attributes="0"/>
+                      <Component id="SearchPanelSubScrollPane" min="-2" pref="248" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="BrowsePanelSubScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="SearchPanelSubScrollPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>

@@ -18,7 +18,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
      * Creates new form AutomatedGUIFrame
      */
     public AutomatedGUIFrame() {
-	libraryFunction = new LibraryFunction();
         initComponents();
     }
 
@@ -36,7 +35,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         MainTabbedPane = new javax.swing.JTabbedPane();
         BrowsePanel = new javax.swing.JPanel();
         BrowsePanelSubScrollPane2 = new javax.swing.JScrollPane();
-        SearchDBTable1 = new javax.swing.JTable();
+        BrowseDBTable = new javax.swing.JTable();
         FirstButtonBrowsePane = new javax.swing.JButton();
         PreviousButtonBrowsePane = new javax.swing.JButton();
         LastButtonBrowsePane = new javax.swing.JButton();
@@ -51,7 +50,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         SaveButtonAddPane = new javax.swing.JButton();
         DiscardButtonAddPane = new javax.swing.JButton();
         SearchPanel = new javax.swing.JPanel();
-        BrowsePanelSubScrollPane1 = new javax.swing.JScrollPane();
+        SearchPanelSubScrollPane = new javax.swing.JScrollPane();
         SearchDBTable = new javax.swing.JTable();
         SerialTxtFieldSearchPane = new javax.swing.JTextField();
         TitleTxtFieldSearchPane = new javax.swing.JTextField();
@@ -85,7 +84,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
 
         BrowsePanel.setToolTipText("");
 
-        SearchDBTable1.setModel(new javax.swing.table.DefaultTableModel(
+        BrowseDBTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -93,7 +92,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
                 "<html> <b>Number</b> </html>", "<html> <b>Manual Serial Number</b> </html>", "<html> <b>Title of Manual</b> </html>", "<html> <b>Author Name</b> </html>"
             }
         ));
-        BrowsePanelSubScrollPane2.setViewportView(SearchDBTable1);
+        BrowsePanelSubScrollPane2.setViewportView(BrowseDBTable);
 
         FirstButtonBrowsePane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/up.png"))); // NOI18N
         FirstButtonBrowsePane.setText("<html>\n<b>First</b>\n</html>\n");
@@ -244,7 +243,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
                 "<html> <b>Number</b> </html>", "<html> <b>Manual Serial Number</b> </html>", "<html> <b>Title of Manual</b> </html>", "<html> <b>Author Name</b> </html>"
             }
         ));
-        BrowsePanelSubScrollPane1.setViewportView(SearchDBTable);
+        SearchPanelSubScrollPane.setViewportView(SearchDBTable);
 
         SerialTxtFieldSearchPane.setText("Enter the Manual Serial Number");
 
@@ -267,7 +266,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
             .addGroup(SearchPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(SearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BrowsePanelSubScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchPanelSubScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(SearchPanelLayout.createSequentialGroup()
                         .addComponent(SerialTxtFieldSearchPane, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -288,7 +287,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
                     .addComponent(AuthorTxtFieldSearchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchButtonSearchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(BrowsePanelSubScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchPanelSubScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
 
@@ -301,10 +300,9 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
             }
         });
 
-        Add_Item_FileMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
         Add_Item_FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/add.png"))); // NOI18N
         Add_Item_FileMenu.setMnemonic('V');
-        Add_Item_FileMenu.setText("<html>\n<b>ADD Manual</b>\n</html>");
+        Add_Item_FileMenu.setText("<html> <b>ADD Manual</b> </html>");
         Add_Item_FileMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Add_Item_FileMenuActionPerformed(evt);
@@ -312,10 +310,9 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         });
         FileMenu.add(Add_Item_FileMenu);
 
-        Search_Item_FileMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, 0));
         Search_Item_FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/search.png"))); // NOI18N
         Search_Item_FileMenu.setMnemonic('V');
-        Search_Item_FileMenu.setText("<html>\n<b>Search DB</b>\n</html>");
+        Search_Item_FileMenu.setText("<html> <b>Search DB</b> </html>");
         Search_Item_FileMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Search_Item_FileMenuActionPerformed(evt);
@@ -323,7 +320,6 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         });
         FileMenu.add(Search_Item_FileMenu);
 
-        Browse_Item_FileMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, 0));
         Browse_Item_FileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/custommaingui/browse.png"))); // NOI18N
         Browse_Item_FileMenu.setText("<html>\n<b>Browse DB</b>\n</html>");
         Browse_Item_FileMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -448,7 +444,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         }
         if (checkFlag > 0) {
             System.out.println("checkFlag : " + checkFlag);
-            
+
+            LibraryFunction libraryFunction = new LibraryFunction();
             String[][] resultData = libraryFunction.Search(keys, values);
             libraryFunction.addRow(SearchDBTable, resultData);
             
@@ -485,7 +482,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
         if (checkFlag < 3) {
             System.out.println("Add checkFlag : " + checkFlag);
             String[] values = {values0, values1, values2};
-            
+
+            LibraryFunction libraryFunction = new LibraryFunction();
             if (libraryFunction.Add(keys, values)) {
                 discardData(0);
             }
@@ -574,8 +572,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AuthorLabelAddPane;
     private javax.swing.JTextField AuthorTxtFieldAddPane;
     private javax.swing.JTextField AuthorTxtFieldSearchPane;
+    private javax.swing.JTable BrowseDBTable;
     private javax.swing.JPanel BrowsePanel;
-    private javax.swing.JScrollPane BrowsePanelSubScrollPane1;
     private javax.swing.JScrollPane BrowsePanelSubScrollPane2;
     private javax.swing.JMenuItem Browse_Item_FileMenu;
     private javax.swing.JButton DiscardButtonAddPane;
@@ -592,8 +590,8 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JButton SaveButtonAddPane;
     private javax.swing.JButton SearchButtonSearchPane;
     private javax.swing.JTable SearchDBTable;
-    private javax.swing.JTable SearchDBTable1;
     private javax.swing.JPanel SearchPanel;
+    private javax.swing.JScrollPane SearchPanelSubScrollPane;
     private javax.swing.JMenuItem Search_Item_FileMenu;
     private javax.swing.JLabel SerialLabelAddPane;
     private javax.swing.JTextField SerialTxtFieldAddPane;
@@ -604,6 +602,4 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    private LibraryFunction libraryFunction;
 }

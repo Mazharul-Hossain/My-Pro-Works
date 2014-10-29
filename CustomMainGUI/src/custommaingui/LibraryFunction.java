@@ -21,9 +21,12 @@ public class LibraryFunction {
 
     String tableName = "books";
 
+<<<<<<< HEAD
     int paginationIndex;
     int limit;
 
+=======
+>>>>>>> origin/master
     public LibraryFunction() {
         dao = new MySQLAccess();
         dao.connectDataBase();
@@ -144,6 +147,7 @@ public class LibraryFunction {
             model.addRow(object);
         }
     }
+<<<<<<< HEAD
 
     /**
      * Functions for paginations
@@ -192,4 +196,6 @@ public class LibraryFunction {
             return Browse((paginationIndex - limit), limit);
         }
     }
+=======
+>>>>>>> origin/master
 }
