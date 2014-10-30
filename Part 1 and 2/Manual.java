@@ -33,21 +33,22 @@ public class Manual {
 
     }
 
-    private void print_2_console() {
+    public void print_2_console() {
         System.out.println("serial_number:" + serial_number + "title:" + title + "author:" + author);
     }
 
     public static void main(String[] args) {
-        Manual manObj1 = new Manual();
 
-        Manual manObj2 = new Manual("123");
-        Manual manObj3 = new Manual("114", "Value of life");
-        Manual manObj4 = new Manual("115", "Value of Death", "Robert C Brown");
+        Library library = new Library();
+
+        library.addManual();
+        library.addManual();
+        library.addManual();
+        library.addManual();
+        library.addManual();
+
         //print all the values to console
-        manObj1.print_2_console();
-        manObj2.print_2_console();
-        manObj3.print_2_console();
-        manObj4.print_2_console();
+        library.printDetailsAllManuals();
     }
 
     /**
@@ -111,7 +112,7 @@ public class Manual {
         System.out.println("Enter a string");
         String s = in.nextLine();
         System.out.println("You entered string " + s);
-        
+
         serial_number = "???????";
         title = "Untitled";
         author = "Unknown";
