@@ -39,7 +39,7 @@ public class Manual {
     private void print_2_console(String src_num, String Title, String Author) {
         System.out.println("serial_number:" + src_num + "title:" + Title + "author:" + Author);
     }
-
+/*
     public static void main(String[] args) {
         Manual manObj1 = new Manual();
 
@@ -56,7 +56,7 @@ public class Manual {
         manObj1.getDetails();
     //  manObj1.print_2_console(getSerialNumber(),getTitle(),getAuthor());
     }
-
+*/
     /**
      * methods to set the properties of a Manual
      *
@@ -114,16 +114,18 @@ public class Manual {
     public void getDetails() {
 
         Scanner in = new Scanner(System.in);
+		ValidationEngine vEngine = new ValidationEngine();
 
         System.out.println("Enter the serial number of your manual");
         String s = in.nextLine();
-        setSerialNumber(s);
+		if (vEngine.checkString(s)){setSerialNumber(s);}
+        
         System.out.println("Enter title of your manual");
         s = in.nextLine();
-        setTitle(s);
+        if (vEngine.checkString(s)){setTitle(s);}
         System.out.println("Enter Author name of your manual");
         s = in.nextLine();
-        setAuthor(s);
+        if (vEngine.checkString(s)){setAuthor(s);}
         in.close();
     }
     
