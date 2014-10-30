@@ -42,7 +42,31 @@ public class Library {
         }
     }
 	
-	public String[][] Browse(int start, int limit) {
+	public String[][] Search(String[] values) {
+        String[][] resultData = new String[100][3];
+        Manual manual;
+
+        int index = 0;
+        for (int i = 0; i < lists.size(); i++) {
+            manual = (Manual) lists.get(i);
+
+            if (manual.getSerialNumber().equalsIgnoreCase(values[0])
+                    || manual.getTitle().equalsIgnoreCase(values[1])
+                    || manual.getAuthor().equalsIgnoreCase(values[2])) {
+
+                resultData[index][0] = manual.getSerialNumber();
+                resultData[index][1] = manual.getTitle();
+                resultData[index][2] = manual.getAuthor();
+				
+				index++;
+            }
+        }
+        return resultData;
+    }
+
+    public String[][] Browse(int start, int limit) {
+
+        Manual manual;
         paginationIndex = start;
 
         int end = paginationIndex + limit;
@@ -51,7 +75,7 @@ public class Library {
 
         int index = 0;
         for (int i = start; i < end; i++) {
-            Manual manual = (Manual) lists.get(i);
+            manual = (Manual) lists.get(i);
 
             resultData[index][0] = manual.getSerialNumber();
             resultData[index][1] = manual.getTitle();
