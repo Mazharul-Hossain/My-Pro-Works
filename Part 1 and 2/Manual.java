@@ -36,17 +36,27 @@ public class Manual {
 			System.out.println("serial_number:"+ serial_number+"title:"+title+"author:"+author);
 	}
 
+<<<<<<< HEAD
     private void print_2_console(String src_num, String Title, String Author) {
         System.out.println("serial_number:" + src_num + "title:" + Title + "author:" + Author);
+=======
+    public void print_2_console() {
+        System.out.println("serial_number:" + serial_number + "title:" + title + "author:" + author);
+>>>>>>> origin/master
     }
 
     public static void main(String[] args) {
-        Manual manObj1 = new Manual();
 
-        Manual manObj2 = new Manual("123");
-        Manual manObj3 = new Manual("114", "Value of life");
-        Manual manObj4 = new Manual("115", "Value of Death", "Robert C Brown");
+        Library library = new Library();
+
+        library.addManual();
+        library.addManual();
+        library.addManual();
+        library.addManual();
+        library.addManual();
+
         //print all the values to console
+<<<<<<< HEAD
         manObj1.print_2_console();
         manObj2.print_2_console();
         manObj3.print_2_console();
@@ -55,6 +65,9 @@ public class Manual {
 		//Added code for storing user value 
 		manObj1.getDetails();
 		manObj1.print_2_console(getSerialNumber(),getTitle(),getAuthor());
+=======
+        library.printDetailsAllManuals();
+>>>>>>> origin/master
     }
 
     /**
@@ -117,6 +130,7 @@ public class Manual {
 
         System.out.println("Enter the serial number of your manual");
         String s = in.nextLine();
+<<<<<<< HEAD
 		setSerialNumber(s);
 		System.out.println("Enter title of your manual");
 		s = in.nextLine();
@@ -124,6 +138,13 @@ public class Manual {
 		System.out.println("Enter Author name of your manual");
 		s = in.nextLine();
 		setAuthor(s);
+=======
+        System.out.println("You entered string " + s);
+
+        serial_number = "???????";
+        title = "Untitled";
+        author = "Unknown";
+>>>>>>> origin/master
 
     }
 	
