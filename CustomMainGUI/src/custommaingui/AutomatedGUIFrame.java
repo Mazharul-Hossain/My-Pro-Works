@@ -536,7 +536,7 @@ public class AutomatedGUIFrame extends javax.swing.JFrame {
             SerialTxtFieldAddPane.setText(message[0]);
             ManualTxtFieldAddPane.setText(message[1]);
             AuthorTxtFieldAddPane.setText(message[2]);
-        } else if (i == 0) {
+        } else if (i == 1) {
             SerialTxtFieldSearchPane.setText(message[0]);
             TitleTxtFieldSearchPane.setText(message[1]);
             AuthorTxtFieldSearchPane.setText(message[2]);
