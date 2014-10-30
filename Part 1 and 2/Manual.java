@@ -32,9 +32,12 @@ public class Manual {
         author = "Unknown";
 
     }
+	private void print_2_console(){
+			System.out.println("serial_number:"+ serial_number+"title:"+title+"author:"+author);
+	}
 
-    private void print_2_console() {
-        System.out.println("serial_number:" + serial_number + "title:" + title + "author:" + author);
+    private void print_2_console(String src_num, String Title, String Author) {
+        System.out.println("serial_number:" + src_num + "title:" + Title + "author:" + Author);
     }
 
     public static void main(String[] args) {
@@ -48,6 +51,10 @@ public class Manual {
         manObj2.print_2_console();
         manObj3.print_2_console();
         manObj4.print_2_console();
+		
+		//Added code for storing user value 
+		manObj1.getDetails();
+		manObj1.print_2_console(getSerialNumber(),getTitle(),getAuthor());
     }
 
     /**
@@ -108,13 +115,16 @@ public class Manual {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Enter a string");
+        System.out.println("Enter the serial number of your manual");
         String s = in.nextLine();
-        System.out.println("You entered string " + s);
-        
-        serial_number = "???????";
-        title = "Untitled";
-        author = "Unknown";
+		setSerialNumber(s);
+		System.out.println("Enter title of your manual");
+		s = in.nextLine();
+		setTitle(s);
+		System.out.println("Enter Author name of your manual");
+		s = in.nextLine();
+		setAuthor(s);
 
     }
+	
 }
