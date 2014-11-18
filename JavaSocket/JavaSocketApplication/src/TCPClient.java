@@ -66,30 +66,32 @@ public class TCPClient {
         try {
             FileInputStream fis;
             fis = new FileInputStream(myFile);
-            
+
             byte[] mybytearray = new byte[byteSize];
             int length = (int) myFile.length();
             int start = 0;
             int size = mybytearray.length;
+
             BufferedInputStream bis = new BufferedInputStream(fis);
             OutputStream os = clientSocket.getOutputStream();
+
             while (start < length) {
                 if ((start + mybytearray.length) > length) {
                     size = length - start;
                 }
                 //read from file
                 bis.read(mybytearray, start, size);
-                
+
                 //write to
                 os.write(mybytearray, start, size);
-                
+
                 size += mybytearray.length;
             }
             os.flush();
-            
+
             fis.close();
             os.close();
-            
+
             clientSocket.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
