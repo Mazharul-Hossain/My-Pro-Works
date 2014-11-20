@@ -41,7 +41,7 @@ public class TCPServer extends Thread {
 
             while (listening) {
                 System.out.println("Server is listening");
-                new ServerTCPThread(serverSocket.accept()).start();
+                new TCPServerThread(serverSocket.accept()).start();
             }
             serverSocket.close();
         } 

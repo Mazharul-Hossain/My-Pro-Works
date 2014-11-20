@@ -5,8 +5,17 @@
 import java.io.*;
 import java.net.*;
 
-public class UDPClient {
+public class UDPClient extends Thread implements Serializable {
 
+    String serverName;
+    int serverPort;
+    int byteSize;
+    InetAddress serverIPAddress;
+    Socket clientSocket;
+    
+    public UDPClient(){}
+    
+    
     public static void main(String[] args) throws Exception {
         //get server address
         String serverName = "localhost";

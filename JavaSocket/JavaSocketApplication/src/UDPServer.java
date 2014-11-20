@@ -1,4 +1,8 @@
 import java.io.IOException;
+import java.io.Serializable;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,11 +16,12 @@ import java.util.logging.Logger;
  *
  * @author Mazhar
  */
-class UDPServer {
+class UDPServer extends Thread implements Serializable{
 
     int serverPort;
-    ServerSocket serverSocket = null;
+    DatagramSocket serverSocket = null;
     boolean listening = true;
+    int byteSize;
 
     public UDPServer(int Port) {
         serverPort = Port;
@@ -38,11 +43,25 @@ class UDPServer {
     public void connect() {
 
         try {
-            serverSocket = new ServerSocket(serverPort);
+            serverSocket = new DatagramSocket(serverPort);
+
+            byte[] receiveData = new byte[byteSize];
+            byte[] sendData = new byte[byteSize];
 
             while (listening) {
-                System.out.println("Server is listening");
-                new ServerTCPThread(serverSocket.accept()).start();
+                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+                serverSocket.receive(receivePacket);
+                //process data
+                String sentence = new String(receivePacket.getData());
+                String capitalizedSentence = sentence.toUpperCase();
+                sendData = capitalizedSentence.getBytes();
+                //determine client address and port
+                InetAddress IPAddress = receivePacket.getAddress();
+                int port = receivePacket.getPort();
+                //construct datagram
+                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
+                //send
+                serverSocket.send(sendPacket);
             }
             serverSocket.close();
         } catch (IOException ex) {

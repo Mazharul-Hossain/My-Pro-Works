@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.InetAddress;
+import java.net.DatagramPacket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,43 +22,20 @@ import java.util.logging.Logger;
  *
  * @author Mazhar
  */
-public class TCPClient extends Thread implements Serializable {
+class TCPServerThread extends Thread implements Serializable {
 
-    String serverName;
-    int serverPort;
+    private Socket socket = null;
+    File myFile = null;
     int byteSize;
-    InetAddress serverIPAddress;
-    Socket clientSocket;
-    File myFile;
 
-    public TCPClient(String server, int port, int size) {
-        serverName = server;
-        serverPort = port;
-        byteSize = size;
-    }
-
-    public TCPClient(String server, int port) {
-        serverName = server;
-        serverPort = port;
-        byteSize = 512;
+    public TCPServerThread(Socket accept) {
+        super("ServerThread");
+        socket = accept;
     }
 
     @Override
     public void run() {
-        connect();
-    }
-
-    public void connect() {
-        try {
-            serverIPAddress = InetAddress.getByName(serverName);
-            clientSocket = new Socket(serverIPAddress, serverPort);
-
-            fileSend(myFile);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        fileReceive(myFile);
     }
 
     public void fileReceive(File myFile) {
@@ -74,7 +50,7 @@ public class TCPClient extends Thread implements Serializable {
             int size = mybytearray.length;
 
             BufferedOutputStream bos = new BufferedOutputStream(fis);
-            InputStream is = clientSocket.getInputStream();
+            InputStream is = socket.getInputStream();
 
             while (true) {
                 //read from socket
@@ -97,7 +73,7 @@ public class TCPClient extends Thread implements Serializable {
             bos.close();
             fis.close();
 
-            clientSocket.close();
+            socket.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -117,7 +93,7 @@ public class TCPClient extends Thread implements Serializable {
             int size = mybytearray.length;
 
             BufferedInputStream bis = new BufferedInputStream(fis);
-            OutputStream os = clientSocket.getOutputStream();
+            OutputStream os = socket.getOutputStream();
 
             while (start < length) {
                 if ((start + mybytearray.length) > length) {
@@ -138,7 +114,7 @@ public class TCPClient extends Thread implements Serializable {
 
             os.close();
 
-            clientSocket.close();
+            socket.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
