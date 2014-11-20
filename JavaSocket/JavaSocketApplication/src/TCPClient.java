@@ -32,6 +32,8 @@ public class TCPClient extends Thread implements Serializable {
     Socket clientSocket;
     File myFile;
 
+    float percentage;
+
     public TCPClient(String server, int port, int size) {
         serverName = server;
         serverPort = port;
@@ -52,15 +54,15 @@ public class TCPClient extends Thread implements Serializable {
     public void connect() {
         try {
             long startTime = System.nanoTime();
-            
+
             serverIPAddress = InetAddress.getByName(serverName);
             clientSocket = new Socket(serverIPAddress, serverPort);
 
             fileSend(myFile);
-            
+
             long endTime = System.nanoTime();
             long duration = (endTime - startTime);
-            
+
         } catch (UnknownHostException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -150,6 +152,14 @@ public class TCPClient extends Thread implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void setPercentage(int progress, int totalSize) {
+        percentage = (progress * 100) / totalSize;
+    }
+
+    public float getPercentage() {
+        return percentage;
     }
 
 }
