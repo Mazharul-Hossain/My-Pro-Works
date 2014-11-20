@@ -1,0 +1,46 @@
+###################################################################################
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ USER MANUAL @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+###################################################################################
+
+ * This document explains the different features of the software as well as the user interface and it's different components in details to give its user an clear idea about what the program do and how to operate it efficiently.
+ * For details please see the program documentation.
+ * This document is divided into 3 parts: Intro, Options and Operations, Troubleshooting
+
+=============================================Intro===============================================
+
+ This part covers the basic introductory parts about the software including what the software do, who might be it's intendant users.
+
+ This is software is created for maintaining and managing small library stocks for small companies. 
+ It used MySQL database an open source free database as its database. 
+ This whole application is written using Java programming language which makes this application cross platform.
+ This software is suitable for IT Centres and small libraries.
+
+==================================Features=================
+ Features:
+----------
+ The features of this application includes add a technical manual to the database, search a specific technical manual from database and browse through all the technical manuals stored in the database.
+
+ So basically this software performs 3 basic operations:
+ 1. Add manual to database:
+--------------------------	
+	By clicking the ADD button or selecting the add option from the file menu the users can add a technical manual to the database.
+  The database records a technical manual with following properties: 
+		a. Serial number: A unique number provided with each individual manual. The default value of this field is "????????".
+		b. Title: The title of the technical manual. The default value of this field is "Untitled".
+		c. Auther: The auther name of the technical manual. The default value of this field is "Unknown".
+ After putting the data in the respective fields we have to click on save button to save the technical manual data to the database. In case of wrong entry we can discard the data by clicking on the discard button.
+
+ 2. Search manual from database:
+-------------------------------
+   		By clicking the SEARCH button or selecting the search option from the file menu the users can find a technical manual from the database.
+		To search a specific manual from  the database enter the serial number of the technical manual in the text box and click "search" button.
+		If the manual present in the database it will show the manual in a window otherwise it will display "manual not found" message in the window.
+ 3. Browse all technical manuals stored in the database:
+-------------------------------------------------------
+		By clicking the SeeALL button or selecting the browse option from the file menu the users can see all technical manual stored in the database.
+		
+===================================Troubleshooting=======================
+ If you experience unexpected output please check the values given to the specific text boxes.
+ This software is very sensitive on the values given as parameters for example if you insert author name in the serial box it will not work. So please check insert values with care.     
+
+ For detailed understanding of how the software works please check the programmer documentation provided with this application. 
