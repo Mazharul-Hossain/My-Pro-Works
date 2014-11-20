@@ -30,8 +30,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ClientButtonGroup = new javax.swing.ButtonGroup();
-        ServerButtonGroup = new javax.swing.ButtonGroup();
         ServerClentTabbedPane = new javax.swing.JTabbedPane();
         ClientBackgroundPanel = new javax.swing.JPanel();
         ClientMethodsLayeredPane = new javax.swing.JLayeredPane();
@@ -86,7 +84,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
 
         ClientMethodsLayeredPane.setBorder(javax.swing.BorderFactory.createTitledBorder("<html>\n<b>Methods</b>\n</html>"));
 
-        ClientButtonGroup.add(ClientSocketTCPRadioButton);
         ClientSocketTCPRadioButton.setText("<html><b>Socket TCP</b></html>");
         ClientSocketTCPRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +91,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
             }
         });
 
-        ClientButtonGroup.add(ClientSocketUDPRadioButton);
         ClientSocketUDPRadioButton.setText("<html><b>Socket UDP</b></html>");
         ClientSocketUDPRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +98,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
             }
         });
 
-        ClientButtonGroup.add(ClientRMIRadioButton);
         ClientRMIRadioButton.setText("<html><b>RMI (Registry 14445 )<b></html>");
         ClientRMIRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +114,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
                     .addComponent(ClientSocketTCPRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ClientSocketUDPRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ClientRMIRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         ClientMethodsLayeredPaneLayout.setVerticalGroup(
             ClientMethodsLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +132,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
         ClientMethodsLayeredPane.setLayer(ClientRMIRadioButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         ClientChoseFileLayeredPane.setBorder(javax.swing.BorderFactory.createTitledBorder("<html>\n<b>Choose a File</b>\n</html>"));
-       //File chooser Txt field 
+
         jTextField1.setText("Enter Your File");
 
         ClientChooseButton.setText("<html>\n<b>Choose...</b>\n</html>");
@@ -158,7 +153,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
             .addGroup(ClientChoseFileLayeredPaneLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClientChoseFileLayeredPaneLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(ClientChooseButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,7 +207,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
                                 .addComponent(ClientSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ClientSpeedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                        .addGap(0, 108, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ClientTimeLayeredPaneLayout.setVerticalGroup(
@@ -264,7 +259,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ClientPortLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClientPortTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                .addComponent(ClientPortTextField))
         );
         ClientServerIpPortPanelLayout.setVerticalGroup(
             ClientServerIpPortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,25 +290,25 @@ public class ServerClientGUI extends javax.swing.JFrame {
         ClientBackgroundPanelLayout.setHorizontalGroup(
             ClientBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ClientBackgroundPanelLayout.createSequentialGroup()
-                .addGroup(ClientBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(ClientBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ClientBackgroundPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ClientBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ClientScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ClientBackgroundPanelLayout.createSequentialGroup()
+                                .addComponent(ClientStartTxButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ClientTxrxProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClientBackgroundPanelLayout.createSequentialGroup()
                         .addGroup(ClientBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ClientBackgroundPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(ClientMethodsLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ClientMethodsLayeredPane)
+                                .addGap(18, 18, 18)
                                 .addComponent(ClientChoseFileLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ClientServerIpPortPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ClientTimeLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ClientBackgroundPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(ClientBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ClientScrollPane)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ClientBackgroundPanelLayout.createSequentialGroup()
-                                .addComponent(ClientStartTxButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ClientTxrxProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(ClientServerIpPortPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(ClientTimeLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         ClientBackgroundPanelLayout.setVerticalGroup(
@@ -332,7 +327,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
                     .addComponent(ClientStartTxButton)
                     .addComponent(ClientTxrxProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15)
-                .addComponent(ClientScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(ClientScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -340,7 +335,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
 
         ServerMethodsLayeredPane.setBorder(javax.swing.BorderFactory.createTitledBorder("<html>\n<b>Methods</b>\n</html>"));
 
-        ServerButtonGroup.add(ServerSocketTCPRadioButton);
         ServerSocketTCPRadioButton.setText("<html><b>Socket TCP</b></html>");
         ServerSocketTCPRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,7 +342,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
             }
         });
 
-        ServerButtonGroup.add(ServerSocketUDPRadioButton);
         ServerSocketUDPRadioButton.setText("<html><b>Socket UDP</b></html>");
         ServerSocketUDPRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +349,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
             }
         });
 
-        ServerButtonGroup.add(ServerRMIRadioButton);
         ServerRMIRadioButton.setText("<html><b>RMI (Registry 14445 )</b></html>");
         ServerRMIRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -493,7 +485,7 @@ public class ServerClientGUI extends javax.swing.JFrame {
                         .addGroup(ServerBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLayeredPane1)
                             .addComponent(jLayeredPane2))))
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 258, Short.MAX_VALUE))
         );
         ServerBackgroundPanelLayout.setVerticalGroup(
             ServerBackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -687,7 +679,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ClientBackgroundPanel;
-    private javax.swing.ButtonGroup ClientButtonGroup;
     private javax.swing.JButton ClientChooseButton;
     private javax.swing.JLayeredPane ClientChoseFileLayeredPane;
     private javax.swing.JTextArea ClientDetailsPrintingTextArea;
@@ -716,7 +707,6 @@ public class ServerClientGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem FileMenuExit;
     private javax.swing.JRadioButtonMenuItem FileMenuServerMode;
     private javax.swing.JPanel ServerBackgroundPanel;
-    private javax.swing.ButtonGroup ServerButtonGroup;
     private javax.swing.JTabbedPane ServerClentTabbedPane;
     private javax.swing.JLayeredPane ServerMethodsLayeredPane;
     private javax.swing.JLabel ServerPortLabel;
@@ -733,8 +723,8 @@ public class ServerClientGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1; //File chooser
-    private javax.swing.JTextField jTextField2; //File Size
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
