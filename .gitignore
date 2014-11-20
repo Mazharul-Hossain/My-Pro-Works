@@ -57,8 +57,8 @@ Temporary Items
 *.class
 CustomMainGUI/build/classes/custommaingui/AutomatedGUIFrame$1.class
 /CustomMainGUI/dist/
-*.form
 JavaSocket/JavaSocketApplication/src/javasocketapplication/UDPClient.java
 JavaSocket/JavaSocketApplication/src/javasocketapplication/UDPClient.java
 JavaSocket/JavaSocketApplication/src/javasocketapplication/UDPServer.java
 /JavaSocket/JavaSocketApplication/build/
+New_WOrk/JavaSocket/JavaSocketApplication/build/classes/javasocketapplication/ServerClientGUI.form

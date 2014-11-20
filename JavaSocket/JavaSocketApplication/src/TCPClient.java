@@ -51,10 +51,16 @@ public class TCPClient extends Thread implements Serializable {
 
     public void connect() {
         try {
+            long startTime = System.nanoTime();
+            
             serverIPAddress = InetAddress.getByName(serverName);
             clientSocket = new Socket(serverIPAddress, serverPort);
 
             fileSend(myFile);
+            
+            long endTime = System.nanoTime();
+            long duration = (endTime - startTime);
+            
         } catch (UnknownHostException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
