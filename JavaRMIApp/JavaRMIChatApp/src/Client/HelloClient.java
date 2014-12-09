@@ -1,29 +1,31 @@
-/***************************************************************
+package Client;
 
-* Client program for the "Hello, world!" RMI example.
-
-*****************************************************************/
-
+/**
+ * *************************************************************
+ *
+ * Client program for the "Hello, world!" RMI example.
+ *
+ ****************************************************************
+ */
 import java.rmi.Naming;
 
-public class HelloClient 
+public class HelloClient {
 
-{
+    public static void main(String[] argv) {
 
- public static void main (String[] argv) {
+        try {
 
- try {
+            HelloInterface hello
+                    = // your PC address here
+                    (HelloInterface) Naming.lookup("rmi://54.173.191.128:1099/Hello");
 
- HelloInterface hello = // your PC address here
+            System.out.println(hello.say());
 
- (HelloInterface) Naming.lookup ("rmi://54.173.191.128:1099/Hello");
+        } catch (Exception e) {
 
- System.out.println (hello.say());
+            System.out.println("HelloClient exception: " + e);
+        }
 
- }catch (Exception e){
-
-System.out.println ("HelloClient exception: " + e); } 
-
- }
+    }
 
 }

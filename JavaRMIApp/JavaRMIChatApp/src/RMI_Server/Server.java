@@ -5,8 +5,13 @@
  */
 package RMI_Server;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
@@ -15,18 +20,26 @@ import java.rmi.registry.LocateRegistry;
 public class Server {
 
     int port = 6302;
+    Registry rmiRegistry;
 
-    public Server(int port) throws RemoteException {
-        LocateRegistry.createRegistry(port);
+    public Server(int port) throws RemoteException, MalformedURLException {
+
+        this.port = port;
+        rmiRegistry = LocateRegistry.createRegistry(port);
+
+        Naming.rebind("RMIchat", new RMIServer());
     }
 
-    public Server()  throws RemoteException {
-        LocateRegistry.createRegistry(port);
+    public Server() throws RemoteException, MalformedURLException {
+        rmiRegistry = LocateRegistry.createRegistry(port);
+
+        Naming.rebind("RMIchat", new RMIServer());
     }
 
-    public static void main(String args[]) {
-
-        
+    public void close() throws NoSuchObjectException {
+        // deregister the registry
+        if (rmiRegistry != null) {
+            UnicastRemoteObject.unexportObject(rmiRegistry, true);
+        }
     }
-
 }
