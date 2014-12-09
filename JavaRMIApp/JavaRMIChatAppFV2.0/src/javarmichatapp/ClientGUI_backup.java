@@ -42,7 +42,6 @@ public class ClientGUI extends javax.swing.JFrame {
         AvailableClientPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ClientAvailableTextArea = new javax.swing.JTextArea();
-        ClientAvailableComboBox = new javax.swing.JComboBox();
         ClientMessageBoardPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ClientMessageTextArea = new javax.swing.JTextArea();
@@ -136,43 +135,30 @@ public class ClientGUI extends javax.swing.JFrame {
                         .addGroup(ClientServerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ClientPasswordLabel)
                             .addComponent(ClientPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(ClientSignUpButton))
+                    .addGroup(ClientServerPanelLayout.createSequentialGroup()
+                        .addComponent(ClientSignUpButton)))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
         AvailableClientPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("<html>\n<b>Available for Chat</b>\n</html>"));
 
-        ClientAvailableTextArea.setEditable(false);
         ClientAvailableTextArea.setColumns(20);
         ClientAvailableTextArea.setRows(5);
         jScrollPane1.setViewportView(ClientAvailableTextArea);
-
-        ClientAvailableComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        ClientAvailableComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClientAvailableComboBoxActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout AvailableClientPanelLayout = new javax.swing.GroupLayout(AvailableClientPanel);
         AvailableClientPanel.setLayout(AvailableClientPanelLayout);
         AvailableClientPanelLayout.setHorizontalGroup(
             AvailableClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(ClientAvailableComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         AvailableClientPanelLayout.setVerticalGroup(
             AvailableClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AvailableClientPanelLayout.createSequentialGroup()
-                .addComponent(ClientAvailableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
         );
 
         ClientMessageBoardPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("<html>\n<b>Message Board</b>\n</html>"));
 
-        ClientMessageTextArea.setEditable(false);
         ClientMessageTextArea.setColumns(20);
         ClientMessageTextArea.setRows(5);
         jScrollPane2.setViewportView(ClientMessageTextArea);
@@ -231,7 +217,7 @@ public class ClientGUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ClientFileTrnsProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(ClientFileTrnsProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(ClientFilePathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -301,16 +287,16 @@ public class ClientGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 13, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         pack();
@@ -319,10 +305,6 @@ public class ClientGUI extends javax.swing.JFrame {
     private void ClientFilePathTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientFilePathTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ClientFilePathTextFieldActionPerformed
-
-    private void ClientAvailableComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientAvailableComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClientAvailableComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,30 +340,9 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
     }
-    //My Variables
-    
-    //My functions
-    public void setAvailableClientList(String[] availableClientUserName){
-        
-        int i = availableClientUserName.length;
-        System.out.println("Length of user names received from server: "+i);
-        //remove all the previous items from the JComboBox ClientAvailableComboBox
-        int comboBoxItemCount = ClientAvailableComboBox.getItemCount();
-        System.out.println("The number of present item in jComboBox:"+comboBoxItemCount);
-        ClientAvailableComboBox.removeAllItems();
-        
-        //Add received user names as items to jComboBox
-        for (int j=0;j<i;j++) {
-            ClientAvailableComboBox.addItem(availableClientUserName[j]);
-            //show the available user in the textarea
-            ClientAvailableTextArea.append(availableClientUserName[j]+" is online");
-        }
-        ClientAvailableComboBox.addItem("all");
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AvailableClientPanel;
-    private javax.swing.JComboBox ClientAvailableComboBox;
     private javax.swing.JTextArea ClientAvailableTextArea;
     private javax.swing.JButton ClientFileChooseButton;
     private javax.swing.JTextField ClientFilePathTextField;
