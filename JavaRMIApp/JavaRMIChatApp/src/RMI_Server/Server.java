@@ -6,6 +6,7 @@
 package RMI_Server;
 
 import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
@@ -22,24 +23,28 @@ public class Server {
     int port = 6302;
     Registry rmiRegistry;
 
-    public Server(int port) throws RemoteException, MalformedURLException {
+    public Server(String ip, int port) throws RemoteException, AlreadyBoundException {
 
+        System.out.println("Server is starting in ip: " + ip + " and port: " + port);
         this.port = port;
-        rmiRegistry = LocateRegistry.createRegistry(port);
 
-        Naming.rebind("RMIchat", new RMIServer());
-    }
+        System.setProperty("java.rmi.server.hostname", ip);
+        rmiRegistry = LocateRegistry.createRegistry(this.port);
+        //rmiRegistry = LocateRegistry.getRegistry();
 
-    public Server() throws RemoteException, MalformedURLException {
-        rmiRegistry = LocateRegistry.createRegistry(port);
+        rmiRegistry.rebind("RMIchat", new RMIServer());
 
-        Naming.rebind("RMIchat", new RMIServer());
+        System.out.println("Server is listening........");
     }
 
     public void close() throws NoSuchObjectException {
         // deregister the registry
         if (rmiRegistry != null) {
+            System.out.println("Server is stoping........");
+
             UnicastRemoteObject.unexportObject(rmiRegistry, true);
+
+            System.out.println("Server is stoped");
         }
     }
 }

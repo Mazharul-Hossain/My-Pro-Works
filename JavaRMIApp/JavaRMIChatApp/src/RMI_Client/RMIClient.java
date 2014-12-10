@@ -19,6 +19,6 @@ public class RMIClient extends UnicastRemoteObject implements RMIClientInterface
 
     @Override
     public void showChat(String sender_name, String msg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(sender_name + " > " + msg);
     }
 }

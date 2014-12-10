@@ -136,7 +136,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="ServerAddressTextField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
+            <Property name="text" type="java.lang.String" value="127.0.0.1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="ServerPortIDLabel">
@@ -146,18 +146,24 @@
         </Component>
         <Component class="javax.swing.JTextField" name="ServerPortNumTextField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField2"/>
+            <Property name="text" type="java.lang.String" value="1099"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="ServerStartButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Server Start"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ServerStartButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ServerStopButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Server Stop"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ServerStopButtonActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane4">
 

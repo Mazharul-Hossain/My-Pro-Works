@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface RMIServerInterface extends Remote {
 
-    public boolean register(String user_name, String password);
+    public abstract boolean register(String user_name, String password) throws RemoteException;
 
-    public boolean sign_in(String user_name, String password, RMIClientInterface rmiClient);
+    public abstract boolean sign_in(String user_name, String password, RMIClientInterface rmiClient) throws RemoteException;
 
-    public List getUserList();
+    public abstract List getUserList() throws RemoteException;
 
-    public void chatUnicast(String sender_name, String receiver_name, String msg);
+    public abstract void chatUnicast(String sender_name, String receiver_name, String msg) throws RemoteException;
 
-    public void chatBroadcast(String sender_name, String msg);
+    public abstract void chatBroadcast(String sender_name, String msg) throws RemoteException;
 }

@@ -5,6 +5,13 @@
  */
 package RMI_Server;
 
+import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.NoSuchObjectException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Farshad
@@ -44,15 +51,25 @@ public class ServerGUI extends javax.swing.JFrame {
 
         ServerIDLabel.setText("ServerID");
 
-        ServerAddressTextField.setText("jTextField1");
+        ServerAddressTextField.setText("127.0.0.1");
 
         ServerPortIDLabel.setText("Port Number");
 
-        ServerPortNumTextField.setText("jTextField2");
+        ServerPortNumTextField.setText("1099");
 
         ServerStartButton.setText("Server Start");
+        ServerStartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ServerStartButtonActionPerformed(evt);
+            }
+        });
 
         ServerStopButton.setText("Server Stop");
+        ServerStopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ServerStopButtonActionPerformed(evt);
+            }
+        });
 
         ServerStatusTextArea.setColumns(20);
         ServerStatusTextArea.setRows(5);
@@ -138,6 +155,24 @@ public class ServerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ServerStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerStartButtonActionPerformed
+        try {
+            String ip = ServerAddressTextField.getText();
+            String port = ServerPortNumTextField.getText();
+            server = new Server(ip, Integer.parseInt(port));
+        } catch (RemoteException | AlreadyBoundException ex) {
+            Logger.getLogger(ServerGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ServerStartButtonActionPerformed
+
+    private void ServerStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerStopButtonActionPerformed
+        try {
+            server.close();
+        } catch (NoSuchObjectException ex) {
+            Logger.getLogger(ServerGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ServerStopButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,4 +222,7 @@ public class ServerGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
+
+    //user defined codes
+    Server server;
 }

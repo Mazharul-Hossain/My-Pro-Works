@@ -13,6 +13,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,22 +36,45 @@ public class Client {
     }
 
     public boolean register(String user_name, String password) {
-        return rmiServer.register(user_name, password);
+        try {
+            return rmiServer.register(user_name, password);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     public boolean sign_in(String user_name, String password, RMIClientInterface rmiClient) {
-        return rmiServer.sign_in(user_name, password, rmiClient);
+        try {
+            return rmiServer.sign_in(user_name, password, rmiClient);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     public List getUserList() {
-        return rmiServer.getUserList();
+        try {
+            return rmiServer.getUserList();
+        } catch (RemoteException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public void chatUnicast(String my_user_name, String receiver_name, String msg) {
-        rmiServer.chatUnicast(my_user_name, receiver_name, msg);
+        try {
+            rmiServer.chatUnicast(my_user_name, receiver_name, msg);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void chatBroadcast(String my_user_name, String msg) {
-        rmiServer.chatBroadcast(my_user_name, msg);
+        try {
+            rmiServer.chatBroadcast(my_user_name, msg);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -90,16 +90,25 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     @Override
     public void chatUnicast(String sender_name, String receiver_name, String msg) {
 
-        RMIClientInterface rmiClient = map.get(receiver_name);
-        rmiClient.showChat(sender_name, msg);
+        try {
+            RMIClientInterface rmiClient = map.get(receiver_name);
+            rmiClient.showChat(sender_name, msg);
+        } catch (RemoteException ex) {
+            Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void chatBroadcast(String sender_name, String msg) {
 
         for (Map.Entry pairs : map.entrySet()) {
-            RMIClientInterface rmiClient = (RMIClientInterface) pairs.getValue();
-            rmiClient.showChat(sender_name, msg);
+            try {
+                RMIClientInterface rmiClient = (RMIClientInterface) pairs.getValue();
+                rmiClient.showChat(sender_name, msg);
+            } catch (RemoteException ex) {
+                Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
