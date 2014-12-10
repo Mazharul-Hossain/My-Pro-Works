@@ -44,7 +44,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
                 query = "INSERT INTO `users` (`user_name`, `password`) VALUES(" + user_name + ", " + password + ")";
                 int rsUpdate = dao.executeQueryUpdate(query);
 
-                if (rsUpdate != 1) {
+                if (rsUpdate != 0) {
                     returnFlag = true;
                 }
             }
@@ -96,7 +96,6 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         } catch (RemoteException ex) {
             Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
@@ -113,15 +112,12 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     }
 
     boolean checkString(String myString) {
-        if (myString != null && !myString.isEmpty()) {
-            return true;
-        }
-        return false;
+        return (myString != null && !myString.isEmpty());
     }
-
     /*===============================================
      *
      *===============================================*/
+
     public class MySQLAccess {
 
         /*

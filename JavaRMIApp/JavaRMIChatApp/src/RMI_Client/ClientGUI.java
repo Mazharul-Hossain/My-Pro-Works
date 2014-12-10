@@ -5,6 +5,12 @@
  */
 package RMI_Client;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Farshad
@@ -82,8 +88,18 @@ public class ClientGUI extends javax.swing.JFrame {
         ClientPasswordField.setText("jPasswordField1");
 
         ClientLogInButton.setText("Log in");
+        ClientLogInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientLogInButtonActionPerformed(evt);
+            }
+        });
 
         ClientSignUpButton.setText("Signup");
+        ClientSignUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientSignUpButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ClientServerPanelLayout = new javax.swing.GroupLayout(ClientServerPanel);
         ClientServerPanel.setLayout(ClientServerPanelLayout);
@@ -178,6 +194,11 @@ public class ClientGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(ClientMessageTextArea);
 
         ClientMessageSendButton.setText("Send");
+        ClientMessageSendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientMessageSendButtonActionPerformed(evt);
+            }
+        });
 
         ClientMessageWriteTextArea.setColumns(20);
         ClientMessageWriteTextArea.setRows(5);
@@ -324,6 +345,39 @@ public class ClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ClientAvailableComboBoxActionPerformed
 
+    private void ClientLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientLogInButtonActionPerformed
+        // TODO add your handling code here:
+        createClient();
+
+        String userId = ClientUserIDTextField.getText();
+        String pass = new String(ClientPasswordField.getPassword());
+
+        client.sign_in(userId, pass);
+    }//GEN-LAST:event_ClientLogInButtonActionPerformed
+
+    private void ClientSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientSignUpButtonActionPerformed
+        // TODO add your handling code here:
+        createClient();
+
+        String userId = ClientUserIDTextField.getText();
+        String pass = new String(ClientPasswordField.getPassword());
+
+        client.register(userId, pass);
+    }//GEN-LAST:event_ClientSignUpButtonActionPerformed
+
+    private void ClientMessageSendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientMessageSendButtonActionPerformed
+        // TODO add your handling code here:
+        String msg = ClientMessageWriteTextArea.getText();
+
+        String receiver_name = String.valueOf(ClientAvailableComboBox.getSelectedItem());
+
+        if (receiver_name.equalsIgnoreCase("all")) {
+            client.chatBroadcast(msg);
+        } else {
+            client.chatUnicast(receiver_name, msg);
+        }
+    }//GEN-LAST:event_ClientMessageSendButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -358,25 +412,54 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
     }
-    //My Variables
 
-    //My functions
-    public void setAvailableClientList(String[] availableClientUserName) {
+    /**
+     * setAvailableClientList
+     *
+     * @param availableClientUserName
+     */
+    public void setAvailableClientList(List availableClientUserName) {
 
-        int i = availableClientUserName.length;
-        System.out.println("Length of user names received from server: " + i);
-        //remove all the previous items from the JComboBox ClientAvailableComboBox
-        int comboBoxItemCount = ClientAvailableComboBox.getItemCount();
-        System.out.println("The number of present item in jComboBox:" + comboBoxItemCount);
         ClientAvailableComboBox.removeAllItems();
 
-        //Add received user names as items to jComboBox
-        for (int j = 0; j < i; j++) {
-            ClientAvailableComboBox.addItem(availableClientUserName[j]);
-            //show the available user in the textarea
-            ClientAvailableTextArea.append(availableClientUserName[j] + " is online");
-        }
         ClientAvailableComboBox.addItem("all");
+
+        for (Object object : availableClientUserName) {
+            String element = (String) object;
+
+            ClientAvailableComboBox.addItem(element);
+            //show the available user in the textarea
+            ClientAvailableTextArea.append(element + " is online \n");
+        }
+    }
+
+    /**
+     * showChat
+     *
+     * @param sender_name
+     * @param msg
+     */
+    public void showChat(String sender_name, String msg) {
+
+        ClientMessageTextArea.append(sender_name + " : " + msg + "\n");
+    }
+
+    /**
+     * createClient
+     */
+    public void createClient() {
+
+        if (clientFlag) {
+            try {
+                clientFlag = false;
+
+                String ip = ClientServerIDTextField.getText();
+                int port = Integer.parseInt(ClientServerPortIDTextField.getText());
+                client = new Client(ip, port, this);
+            } catch (RemoteException | NotBoundException ex) {
+                Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -414,4 +497,9 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
+
+    //user defined codes
+    Client client;
+
+    boolean clientFlag = true;
 }

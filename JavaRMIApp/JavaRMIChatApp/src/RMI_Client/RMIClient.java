@@ -14,11 +14,15 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class RMIClient extends UnicastRemoteObject implements RMIClientInterface {
 
-    public RMIClient() throws RemoteException {
+    ClientGUI clientGUI;
+
+    public RMIClient(ClientGUI clientGUI) throws RemoteException {
+
+        this.clientGUI = clientGUI;
     }
 
     @Override
     public void showChat(String sender_name, String msg) {
-        System.out.println(sender_name + " > " + msg);
+        clientGUI.showChat(sender_name, msg);
     }
 }
