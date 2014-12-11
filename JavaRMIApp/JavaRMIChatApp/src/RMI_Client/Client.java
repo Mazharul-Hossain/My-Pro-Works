@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Tamanna Afreen
  */
-public class Client {
+public class Client extends Thread {
 
     RMIServerInterface rmiServer;
     RMIClientInterface rmiClient;
@@ -55,6 +55,8 @@ public class Client {
                 my_user_name = user_name;
 
                 clientGUI.showChat("Server", "You  have successfully signed in !");
+                
+                start();
             }
         } catch (RemoteException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,6 +84,20 @@ public class Client {
             rmiServer.chatBroadcast(my_user_name, msg);
         } catch (RemoteException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                getUserList();
+                System.out.println("list updated");
+                
+                sleep(4000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

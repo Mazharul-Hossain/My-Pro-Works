@@ -73,11 +73,11 @@ public class ClientGUI extends javax.swing.JFrame {
 
         ClientServerIDLabel.setText("Server Address");
 
-        ClientServerIDTextField.setText("127.10.0.1");
+        ClientServerIDTextField.setText("192.168.241.46");
 
         ClientServerPortID.setText("Server Port");
 
-        ClientServerPortIDTextField.setText("1800");
+        ClientServerPortIDTextField.setText("1099");
 
         ClientUserIDLabel.setText("User ID");
 
@@ -85,7 +85,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
         ClientPasswordLabel.setText("Password");
 
-        ClientPasswordField.setText("jPasswordField1");
+        ClientPasswordField.setText("123");
 
         ClientLogInButton.setText("Log in");
         ClientLogInButton.addActionListener(new java.awt.event.ActionListener() {
@@ -421,6 +421,7 @@ public class ClientGUI extends javax.swing.JFrame {
     public void setAvailableClientList(List availableClientUserName) {
 
         ClientAvailableComboBox.removeAllItems();
+        ClientAvailableTextArea.setText("");
 
         ClientAvailableComboBox.addItem("all");
 

@@ -1,4 +1,4 @@
-
+package RMI_Client;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -31,9 +31,9 @@ class TCPServerThread extends Thread implements Serializable {
 
     String myFileName;
     
-    ServerClientGUI serverClientGUI;
+    ClientGUI serverClientGUI;
 
-    public TCPServerThread(Socket accept, int size, String myfile, ServerClientGUI aThis) {
+    public TCPServerThread(Socket accept, int size, String myfile, ClientGUI aThis) {
         socket = accept;
         myFileName = myfile;
         byteSize = size;
@@ -47,7 +47,6 @@ class TCPServerThread extends Thread implements Serializable {
     }
 
     public void fileReceive() {
-        serverClientGUI.ServerPrintMsg("Read file: " + myFileName);
         try {
             File myFile = new File(myFileName);
             FileOutputStream fis = new FileOutputStream(myFile);

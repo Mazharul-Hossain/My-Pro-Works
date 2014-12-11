@@ -1,4 +1,4 @@
-
+package RMI_Client;
 
 import java.io.IOException;
 import java.net.*;
@@ -24,9 +24,9 @@ public class TCPServer extends Thread {
 
     String myFileName;
     
-    ServerClientGUI serverClientGUI;
+    ClientGUI serverClientGUI;
 
-    public TCPServer(int Port, int size, String myfile, ServerClientGUI aThis) {
+    public TCPServer(int Port, int size, String myfile, ClientGUI aThis) {
         serverPort = Port;
         myFileName = myfile;
         byteSize = size;
@@ -48,9 +48,6 @@ public class TCPServer extends Thread {
     }
 
     public void connect() {
-        
-        serverClientGUI.ServerPrintMsg("Starting TCP listen()");
-
         try {
             serverSocket = new ServerSocket(serverPort);
 

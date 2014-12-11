@@ -1,3 +1,5 @@
+package RMI_Client;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -38,9 +40,9 @@ public class TCPClient extends Thread implements Serializable {
 
     int fileSize;
 
-    ServerClientGUI serverClientGUI;
+    ClientGUI serverClientGUI;
 
-    public TCPClient(String server, int port, int size, File file, ServerClientGUI aThis) {
+    public TCPClient(String server, int port, int size, File file, ClientGUI aThis) {
         serverName = server;
         serverPort = port;
         byteSize = size;
@@ -56,22 +58,10 @@ public class TCPClient extends Thread implements Serializable {
 
     public void connect() {
         try {
-            startTime = System.nanoTime();
-            serverClientGUI.setClientStartTimeTextField(Long.toString(startTime));
-
             serverIPAddress = InetAddress.getByName(serverName);
             clientSocket = new Socket(serverIPAddress, serverPort);
 
             fileSend(myFile);
-
-            endTime = System.nanoTime();
-            duration = (endTime - startTime);
-
-            float speed = (fileSize / 1024) / duration;
-
-            serverClientGUI.setClientEndTimeTextField(Long.toString(endTime));
-            serverClientGUI.setClientTransferTimeTextField(Long.toString(duration));
-            serverClientGUI.setClientSpeedTextField(Float.toString(speed) + " KBps");
 
         } catch (UnknownHostException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,8 +157,6 @@ public class TCPClient extends Thread implements Serializable {
 
     public void setPercentage(int progress, int totalSize) {
         int percentage = (int) (progress * 100) / totalSize;
-
-        serverClientGUI.updateClientTxrxProgressBar(percentage);
     }
 
 }

@@ -37,21 +37,22 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         try {
             dao.connectDataBase();
 
-            String query = "SELECT COUNT(1) FROM `users` WHERE `user_name` = " + user_name;
+            String query = "SELECT * FROM `users` WHERE `user_name` = '" + user_name + "'";
             ResultSet rs = dao.executeQuery(query);
 
             if (!rs.next()) {
-                query = "INSERT INTO `users` (`user_name`, `password`) VALUES(" + user_name + ", " + password + ")";
+                query = "INSERT INTO `users` (`user_name`, `password`) VALUES('" + user_name + "', MD5('" + password + "'))";
                 int rsUpdate = dao.executeQueryUpdate(query);
 
                 if (rsUpdate != 0) {
                     returnFlag = true;
                 }
             }
+            dao.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dao.close();
         return returnFlag;
     }
 
@@ -62,18 +63,18 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         try {
             dao.connectDataBase();
 
-            String query = "SELECT COUNT(1) FROM `users` WHERE `user_name` = " + user_name + " AND `password` = " + password;
+            String query = "SELECT * FROM `users` WHERE `user_name` = '" + user_name + "' AND `password` = MD5('" + password + "')";
             ResultSet rs = dao.executeQuery(query);
 
             if (rs.next()) {
                 map.put(user_name, rmiClient);
                 returnFlag = true;
             }
+            dao.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dao.close();
-
         return returnFlag;
     }
 
@@ -126,22 +127,26 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         private final String dbServer = "localhost";
         private final String dbName = "rmi_chat";
         private final String dbUserID = "root";
-        private final String dbPass = "nopass123";
+        private final String dbPass = "nopass";
 
         private Connection connect = null;
         private Statement statement = null;
 
         public void connectDataBase() {
             try {
-                // this will load the MySQL driver, each DB has its own driver
+                System.out.println("this will load the MySQL driver, each DB has its own driver");
                 Class.forName("com.mysql.jdbc.Driver");
-                // setup the connection with the DB.
+
+                System.out.println("setup the connection with the DB");
                 connect = DriverManager
                         .getConnection("jdbc:mysql://" + dbServer + "/" + dbName + "?"
                                 + "user=" + dbUserID + "&password=" + dbPass);
 
                 // statements allow to issue SQL queries to the database
                 statement = connect.createStatement();
+
+                System.out.println("MySQL connected");
+
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -149,6 +154,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
         public ResultSet executeQuery(String query) {
             try {
+                System.out.println("MySQL query: " + query);
+
                 ResultSet resultSetLocal = statement.executeQuery(query);
                 return resultSetLocal;
             } catch (SQLException ex) {
@@ -160,6 +167,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         public int executeQueryUpdate(String query) {
             int resultSetLocal = 0;
             try {
+                System.out.println("MySQL query: " + query);
+
                 resultSetLocal = statement.executeUpdate(query);
             } catch (SQLException ex) {
                 Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
