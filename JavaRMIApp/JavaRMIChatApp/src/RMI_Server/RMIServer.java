@@ -5,8 +5,8 @@ import RMI_Client.RMIClientInterface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
 
 import java.sql.Connection;
@@ -25,13 +25,13 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
     public RMIServer() throws RemoteException {
 
-        map = new HashMap<>();
+        map = new ConcurrentHashMap<>();
 
         dao = new MySQLAccess();
     }
 
     @Override
-    public boolean register(String user_name, String password) {
+    public synchronized boolean register(String user_name, String password) {
 
         boolean returnFlag = false;
         try {
@@ -57,7 +57,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     }
 
     @Override
-    public boolean sign_in(String user_name, String password, RMIClientInterface rmiClient) {
+    public synchronized boolean sign_in(String user_name, String password, RMIClientInterface rmiClient) {
 
         boolean returnFlag = false;
         try {
@@ -79,7 +79,10 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     }
 
     @Override
-    public List getUserList() {
+    public synchronized List getUserList() {
+
+        isUserAlive();
+
         List<String> keys = new ArrayList<>();
 
         for (String key : map.keySet()) {
@@ -89,24 +92,49 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     }
 
     @Override
-    public void chatUnicast(String sender_name, String receiver_name, String msg) {
+    public synchronized void chatUnicast(String sender_name, String receiver_name, String msg) {
 
         try {
             RMIClientInterface rmiClient = map.get(receiver_name);
-            rmiClient.showChat(sender_name, msg);
+
+            if (rmiClient != null) {
+                rmiClient.showChat(sender_name, msg);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void chatBroadcast(String sender_name, String msg) {
+    public synchronized void chatBroadcast(String sender_name, String msg) {
 
+        isUserAlive();
         for (Map.Entry pairs : map.entrySet()) {
             try {
                 RMIClientInterface rmiClient = (RMIClientInterface) pairs.getValue();
-                rmiClient.showChat(sender_name, msg);
+
+                if (rmiClient != null) {
+                    rmiClient.showChat(sender_name, msg);
+                }
             } catch (RemoteException ex) {
+                Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    protected synchronized void isUserAlive() {
+
+        String user_name = "";
+        
+        for (Map.Entry pairs : map.entrySet()) {
+            try {
+                RMIClientInterface rmiClient = (RMIClientInterface) pairs.getValue();
+                user_name = (String) pairs.getKey();
+
+                rmiClient.isAlive();
+            } catch (RemoteException ex) {
+
+                map.remove(user_name);
                 Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -127,7 +155,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         private final String dbServer = "localhost";
         private final String dbName = "rmi_chat";
         private final String dbUserID = "root";
-        private final String dbPass = "nopass";
+        private final String dbPass = "nopass123";
 
         private Connection connect = null;
         private Statement statement = null;

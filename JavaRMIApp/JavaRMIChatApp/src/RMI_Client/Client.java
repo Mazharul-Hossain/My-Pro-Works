@@ -10,7 +10,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,6 +73,7 @@ public class Client extends Thread {
     public void chatUnicast(String receiver_name, String msg) {
         try {
             rmiServer.chatUnicast(my_user_name, receiver_name, msg);
+            clientGUI.showChat(my_user_name, msg);
         } catch (RemoteException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }

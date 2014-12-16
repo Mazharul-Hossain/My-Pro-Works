@@ -25,4 +25,8 @@ public class RMIClient extends UnicastRemoteObject implements RMIClientInterface
     public void showChat(String sender_name, String msg) {
         clientGUI.showChat(sender_name, msg);
     }
+
+    @Override
+    public void isAlive() {
+    }
 }

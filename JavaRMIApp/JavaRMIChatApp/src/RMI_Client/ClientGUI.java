@@ -202,10 +202,15 @@ public class ClientGUI extends javax.swing.JFrame {
 
         ClientMessageWriteTextArea.setColumns(20);
         ClientMessageWriteTextArea.setRows(5);
-        ClientMessageWriteTextArea.setText("Hi,\nPlease Write Something and share");
+        ClientMessageWriteTextArea.setText("Hi, Please Write Something and share");
         jScrollPane3.setViewportView(ClientMessageWriteTextArea);
 
         ClientMessageDiscardButton.setText("Discard");
+        ClientMessageDiscardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientMessageDiscardButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ClientMessageBoardPanelLayout = new javax.swing.GroupLayout(ClientMessageBoardPanel);
         ClientMessageBoardPanel.setLayout(ClientMessageBoardPanelLayout);
@@ -378,6 +383,11 @@ public class ClientGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ClientMessageSendButtonActionPerformed
 
+    private void ClientMessageDiscardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientMessageDiscardButtonActionPerformed
+        // TODO add your handling code here:
+        ClientMessageWriteTextArea.setText("");
+    }//GEN-LAST:event_ClientMessageDiscardButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -420,6 +430,8 @@ public class ClientGUI extends javax.swing.JFrame {
      */
     public void setAvailableClientList(List availableClientUserName) {
 
+        String user_name = String.valueOf(ClientAvailableComboBox.getSelectedItem());
+        
         ClientAvailableComboBox.removeAllItems();
         ClientAvailableTextArea.setText("");
 
@@ -432,6 +444,7 @@ public class ClientGUI extends javax.swing.JFrame {
             //show the available user in the textarea
             ClientAvailableTextArea.append(element + " is online \n");
         }
+        ClientAvailableComboBox.setSelectedItem(user_name);
     }
 
     /**

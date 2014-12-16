@@ -21,9 +21,13 @@ public class Server {
     int port = 6302;
     Registry rmiRegistry;
 
-    public Server(String ip, int port) throws RemoteException, AlreadyBoundException {
+    ServerGUI serverGUI;
 
-        System.out.println("Server is starting in ip: " + ip + " and port: " + port);
+    public Server(String ip, int port, ServerGUI gui) throws RemoteException, AlreadyBoundException {
+
+        serverGUI = gui;
+
+        serverGUI.writeToTextArea("Server is starting in ip: " + ip + " and port: " + port + "\n");
         this.port = port;
 
         System.setProperty("java.rmi.server.hostname", ip);
@@ -32,17 +36,17 @@ public class Server {
 
         rmiRegistry.rebind("RMIchat", new RMIServer());
 
-        System.out.println("Server is listening........");
+        serverGUI.writeToTextArea("Server is listening........\n");
     }
 
     public void close() throws NoSuchObjectException {
         // deregister the registry
         if (rmiRegistry != null) {
-            System.out.println("Server is stoping........");
+            serverGUI.writeToTextArea("Server is stoping........\n");
 
             UnicastRemoteObject.unexportObject(rmiRegistry, true);
 
-            System.out.println("Server is stoped");
+            serverGUI.writeToTextArea("Server is stoped\n");
         }
     }
 }

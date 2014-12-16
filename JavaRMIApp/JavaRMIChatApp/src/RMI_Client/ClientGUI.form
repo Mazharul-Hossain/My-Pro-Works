@@ -378,7 +378,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Hi,&#xa;Please Write Something and share"/>
+                    <Property name="text" type="java.lang.String" value="Hi, Please Write Something and share"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -387,6 +387,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Discard"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClientMessageDiscardButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

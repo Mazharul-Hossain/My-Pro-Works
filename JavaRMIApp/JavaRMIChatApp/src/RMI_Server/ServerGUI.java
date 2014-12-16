@@ -5,7 +5,6 @@
  */
 package RMI_Server;
 
-import java.net.MalformedURLException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
@@ -159,7 +158,8 @@ public class ServerGUI extends javax.swing.JFrame {
         try {
             String ip = ServerAddressTextField.getText();
             String port = ServerPortNumTextField.getText();
-            server = new Server(ip, Integer.parseInt(port));
+            
+            server = new Server(ip, Integer.parseInt(port), this);
         } catch (RemoteException | AlreadyBoundException ex) {
             Logger.getLogger(ServerGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -207,6 +207,14 @@ public class ServerGUI extends javax.swing.JFrame {
             }
         });
     }
+
+    /**
+     * createClient
+     */
+    public void writeToTextArea(String msg) {
+        ServerStatusTextArea.append(msg);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ServerAddressTextField;
