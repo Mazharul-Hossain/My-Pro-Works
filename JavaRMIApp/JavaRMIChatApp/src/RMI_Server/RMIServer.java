@@ -17,6 +17,9 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * implements abstract class RMIServerInterface
+ **/
 public class RMIServer extends UnicastRemoteObject implements RMIServerInterface {
 
     Map<String, RMIClientInterface> map;
@@ -30,6 +33,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         dao = new MySQLAccess();
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public synchronized boolean register(String user_name, String password) {
 
@@ -56,6 +62,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         return returnFlag;
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public synchronized boolean sign_in(String user_name, String password, RMIClientInterface rmiClient) {
 
@@ -78,6 +87,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         return returnFlag;
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public synchronized List getUserList() {
 
@@ -91,6 +103,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         return keys;
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public synchronized void chatUnicast(String sender_name, String receiver_name, String msg) {
 
@@ -105,6 +120,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         }
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public synchronized void chatBroadcast(String sender_name, String msg) {
 
@@ -122,6 +140,14 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         }
     }
 
+    /**
+     * isUserAlive
+     * 
+     * protected function for checking alive users
+     * 
+     * iterate through map of all logged-in users to find out who are not 
+     * connected anymore and remove them from map
+     **/
     protected synchronized void isUserAlive() {
 
         String user_name = "";
@@ -139,27 +165,50 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             }
         }
     }
-
-    boolean checkString(String myString) {
-        return (myString != null && !myString.isEmpty());
-    }
+    
     /*===============================================
      *
      *===============================================*/
 
+    /**
+     * Executes mySQL query 
+     * needed for login and sign up of users
+     * no other work is done here
+     **/
     public class MySQLAccess {
 
-        /*
-         * DB information    
-         */
+        /**
+         * DB information 
+         * 
+         * @param dbServer saves the mySQL server host address
+         * @param dbName saves the name of database
+         * @param dbUserID user name for authentication in mySQL server
+         * @param dbPass password for authentication
+         **/
         private final String dbServer = "localhost";
         private final String dbName = "rmi_chat";
         private final String dbUserID = "root";
         private final String dbPass = "nopass123";
 
+        /**
+         * mySQL information
+         * 
+         * @param connect A connection (session) with a specific database. 
+         *                SQL statements are executed and results are returned 
+         *                within the context of a connection
+         * @param statement The object used for executing a static SQL statement 
+         *                  and returning the results it produces
+         **/
         private Connection connect = null;
         private Statement statement = null;
 
+        /**
+         * connectDataBase
+         * 
+         * public function used to open an ODBC connection. 
+         * Creates a session with the server to communicate with mySQL server. 
+         * Creates statement object to execute query.
+         **/
         public void connectDataBase() {
             try {
                 System.out.println("this will load the MySQL driver, each DB has its own driver");
@@ -180,6 +229,16 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             }
         }
 
+        /**
+         * executeQuery
+         * 
+         * public function to execute query
+         * java supports select query only
+         * 
+         * @param query mySQL query as a string
+         * @return ResultSet of query
+         */
+        
         public ResultSet executeQuery(String query) {
             try {
                 System.out.println("MySQL query: " + query);
@@ -192,6 +251,17 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             return null;
         }
 
+        /**
+         * executeQueryUpdate
+         * 
+         * public function to execute query
+         * java supports insert update delete query
+         * 
+         * @param query mySQL query as a string
+         * @return 0 for SQL statements that return nothing
+         *         1 for the row count
+         */
+        
         public int executeQueryUpdate(String query) {
             int resultSetLocal = 0;
             try {
@@ -204,7 +274,11 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             return resultSetLocal;
         }
 
-        // you need to close all three to make sure
+        /**
+         * close   
+         * 
+         * public function to safely close all connection with database
+         **/
         private void close() {
             try {
                 statement.close();

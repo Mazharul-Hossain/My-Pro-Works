@@ -12,6 +12,10 @@ import java.rmi.server.UnicastRemoteObject;
  *
  * @author Tamanna Afreen
  */
+
+/**
+ * implements abstract class RMIServerInterface
+ **/
 public class RMIClient extends UnicastRemoteObject implements RMIClientInterface {
 
     ClientGUI clientGUI;
@@ -21,11 +25,17 @@ public class RMIClient extends UnicastRemoteObject implements RMIClientInterface
         this.clientGUI = clientGUI;
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public void showChat(String sender_name, String msg) {
         clientGUI.showChat(sender_name, msg);
     }
 
+    /**
+     * implementation of abstract method from abstract class RMIServerInterface
+     **/
     @Override
     public void isAlive() {
     }
