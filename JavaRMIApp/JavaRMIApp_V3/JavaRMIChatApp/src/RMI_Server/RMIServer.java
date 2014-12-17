@@ -78,6 +78,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             if (rs.next()) {
                 map.put(user_name, rmiClient);
                 returnFlag = true;
+
+                chatBroadcast("Server", "user \"" + user_name + "\" just joined the chat");
             }
             dao.close();
 
@@ -151,7 +153,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     protected synchronized void isUserAlive() {
 
         String user_name = "";
-        
+
+        List<String> keys = new ArrayList<>();
+
         for (Map.Entry pairs : map.entrySet()) {
             try {
                 RMIClientInterface rmiClient = (RMIClientInterface) pairs.getValue();
@@ -161,8 +165,25 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             } catch (RemoteException ex) {
 
                 map.remove(user_name);
+                keys.add(user_name);
+
                 Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        bradcastLeave(keys);
+    }
+
+    /**
+     *
+     * @param leftClientUserName list of all people who have left
+     *
+     */
+    protected void bradcastLeave(List leftClientUserName) {
+
+        for (Object object : leftClientUserName) {
+            String user_name = (String) object;
+
+            chatBroadcast("Server", "user \"" + user_name + "\" just left the chat");
         }
     }
     
